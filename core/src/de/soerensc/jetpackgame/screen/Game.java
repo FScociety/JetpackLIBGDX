@@ -5,20 +5,22 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.PerspectiveCamera;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
-import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import de.soerensc.jetpackgame.systems.World;
+import de.soerensc.engine.ecs.World;
+import de.soerensc.jetpackgame.game.InGameWorld;
 
 public class Game extends ScreenAdapter {
 
-    private PerspectiveCamera camera;
+    private static boolean started = false;
+
+    private OrthographicCamera camera;
     private Viewport viewport;
     private UiInterface ui;
-    private AssetManager assetManager;
+    public static AssetManager assetManager;
 
     private World world;
 
@@ -26,7 +28,7 @@ public class Game extends ScreenAdapter {
         assetManager = new AssetManager();
         loadResources();
 
-        camera = new PerspectiveCamera(67, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         camera.position.set(10f, 10f, 10f);
         camera.lookAt(0, 0, 0);
         camera.near = 1f;
@@ -37,15 +39,28 @@ public class Game extends ScreenAdapter {
         ui = new UiInterface();
         ui.create();
 
-        world = new World(camera);
+        world = new InGameWorld();
+        world.create();
+
+        Gdx.app.log("Game", "World created!");
+
+        world.start();
+
+
+        Game.started = true;
     }
 
     private void loadResources() {
         assetManager.load("badlogic.jpg", Texture.class);
         assetManager.finishLoading();
+
+        Gdx.app.log("Assets", "Loaded resources!");
     }
 
     public void update(float delta) {
+        if (!Game.started) { return; }
+
+
         this.camera.update();
         //batch.setProjectionMatrix(camera.combined);
 
@@ -60,6 +75,9 @@ public class Game extends ScreenAdapter {
 
     @Override
     public void render(float delta) {
+        if (!Game.started) { return; }
+
+
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT | GL20.GL_DEPTH_BUFFER_BIT);
 
@@ -74,7 +92,7 @@ public class Game extends ScreenAdapter {
     public void dispose() {
         this.dispose();
 
-        world.dispose();
+        this.world.dispose();
     }
 
     @Override

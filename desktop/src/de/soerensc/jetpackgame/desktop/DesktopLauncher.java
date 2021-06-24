@@ -1,18 +1,22 @@
 package de.soerensc.jetpackgame.desktop;
 
-import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application;
-import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration;
+import com.badlogic.gdx.backends.lwjgl.*;
 import de.soerensc.jetpackgame.screen.Boot;
-//import de.soerensc.ponggame.core.*;
 
 public class DesktopLauncher {
 	public static void main (String[] arg) {
-		Lwjgl3ApplicationConfiguration config = new Lwjgl3ApplicationConfiguration();
-		config.setIdleFPS(60);
-		config.useVsync(true);
-		config.setTitle("Jetpack - Game");
+		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
+		config.vSyncEnabled = true;
+		config.title = "Jeptack - Game";
+		config.width = 960;
+		config.height = 640;
+		//<config.useVsync(true);
+		//config.setTitle("Jetpack - Game");
+		//config.setIdleFPS(60);
 
-		config.setWindowedMode(960, 640);
-		new Lwjgl3Application(new Boot(), config);
+		//config.setWindowedMode(960, 640);
+		Boot b = new Boot();
+		new LwjglApplication(b, config);
+
 	}
 }
