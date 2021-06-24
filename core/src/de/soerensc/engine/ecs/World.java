@@ -7,7 +7,11 @@ import java.util.ArrayList;
 public class World {
 
     public ArrayList<GameObject> gameObjectsInWorld = new ArrayList<>();
-    private SpriteBatch spriteBatch;
+    public static SpriteBatch spriteBatch;
+
+    public World() {
+        spriteBatch = new SpriteBatch();
+    }
 
 
     public final void add(GameObject obj) {
@@ -18,10 +22,7 @@ public class World {
     public void create() {}
 
     public final void start() {
-        spriteBatch = new SpriteBatch();
-
         for (GameObject obj : this.gameObjectsInWorld) {
-            obj.setSpriteBatch(this.spriteBatch);
             obj.start();
         }
     }

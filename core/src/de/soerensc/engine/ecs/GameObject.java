@@ -2,28 +2,24 @@ package de.soerensc.engine.ecs;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import de.soerensc.engine.ecs.components.Transform2D;
 
 import java.util.ArrayList;
 
 public class GameObject {
     private ArrayList<GameBehaviour> components = new ArrayList<>();
-    private SpriteBatch spriteBatch;
+
+    public final Transform2D transform = new Transform2D();
 
     public GameObject() {
-
+        this.addComponent(transform);
     }
 
     public void addComponent(GameBehaviour gb) {
         this.components.add(gb);
-    }
 
-    public GameBehaviour getComponent(Class<? extends GameBehaviour> e) {
-        for (final GameBehaviour component2 : this.components) {
-            if (component2.getClass() == e || e.isInstance(component2)) {
-                return component2;
-            }
-        }
-        return null;
+        gb.gameObject = this;
+        gb.spriteBatch = World.spriteBatch;
     }
 
     public void start() {
@@ -50,15 +46,12 @@ public class GameObject {
         }
     }
 
-    public void setSpriteBatch(SpriteBatch spriteBatch) {
-        if (this.spriteBatch == null) {
-            this.spriteBatch = spriteBatch;
-        } else {
-            Gdx.app.error("lol", "You cannot overrite the existing spriteBatch");
+    public GameBehaviour getComponent(Class<? extends GameBehaviour> e) {
+        for (final GameBehaviour component2 : this.components) {
+            if (component2.getClass() == e || e.isInstance(component2)) {
+                return component2;
+            }
         }
-    }
-
-    public SpriteBatch getSpriteBatch() {
-        return this.spriteBatch;
+        return null;
     }
 }

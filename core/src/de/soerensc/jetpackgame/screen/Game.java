@@ -6,12 +6,12 @@ import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.PerspectiveCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import de.soerensc.engine.ecs.World;
 import de.soerensc.jetpackgame.game.InGameWorld;
+import de.soerensc.jetpackgame.game.UiInterface;
 
 public class Game extends ScreenAdapter {
 
@@ -29,10 +29,6 @@ public class Game extends ScreenAdapter {
         loadResources();
 
         camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-        camera.position.set(10f, 10f, 10f);
-        camera.lookAt(0, 0, 0);
-        camera.near = 1f;
-        camera.far = 500f;
         camera.update();
         viewport = new ScreenViewport(camera);
 
@@ -59,10 +55,10 @@ public class Game extends ScreenAdapter {
 
     public void update(float delta) {
         if (!Game.started) { return; }
+        World.spriteBatch.setProjectionMatrix(camera.combined);
 
 
         this.camera.update();
-        //batch.setProjectionMatrix(camera.combined);
 
         ui.act(delta);
 
@@ -83,7 +79,7 @@ public class Game extends ScreenAdapter {
 
         world.render();
 
-        ui.render();
+        //ui.render();
 
         update(delta);
     }

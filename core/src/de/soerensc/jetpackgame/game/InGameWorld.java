@@ -4,18 +4,14 @@ import com.badlogic.gdx.graphics.Texture;
 import de.soerensc.engine.ecs.GameBehaviour;
 import de.soerensc.engine.ecs.GameObject;
 import de.soerensc.engine.ecs.World;
+import de.soerensc.jetpackgame.game.world.background.ParalaxBackground;
 import de.soerensc.jetpackgame.screen.Game;
 
 public class InGameWorld extends World {
 
     public void create() {
-        GameObject test = new GameObject();
-        test.addComponent(new GameBehaviour() {
-            @Override
-            public void render() {
-                gameObject.getSpriteBatch().draw(Game.assetManager.<Texture>get("badlogic.jpg"), 0, 0);
-            }
-        });
-        this.add(test);
+        GameObject background = new GameObject();
+        background.addComponent(new ParalaxBackground(3));
+        this.add(background);
     }
 }
