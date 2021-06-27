@@ -44,8 +44,6 @@ public class UiInterface {
     public void create() {
         uiStage.setDebugAll(true);
 
-
-
         Table completeTable = new Table();
         completeTable.setFillParent(true);
         completeTable.left();
