@@ -1,6 +1,5 @@
-package de.soerensc.jetpackgame.game.world.coins;
+package de.soerensc.jetpackgame.game.world.foreground.coins;
 
-import java.awt.image.BufferedImage;
 import java.util.logging.Logger;
 
 import com.badlogic.gdx.graphics.Texture;
@@ -11,16 +10,14 @@ public class CoinData extends MovingData {
 	public CoinData(SpriteBatch spriteBatch) {
 		super(spriteBatch);
 	}
+
+	public static int coinSize = 14;
 	
-	/*public static int coinSize = 15;
+	int[] coins = new int[coinSize];
 	
-	int coins[] = new int[coinSize];
+	private Texture coin;
 	
-	private BufferedImage coin;
-	
-	public Logger log;
-	
-	public CoinData(Texture coin, SpriteBatch spriteBatch) {
+	public CoinData(SpriteBatch spriteBatch, Texture coin) {
 		super(spriteBatch);
 
 		this.coin = coin;
@@ -29,13 +26,13 @@ public class CoinData extends MovingData {
 
 	@Override
 	public MovingData getNew() {
-		return new CoinData(this.coin);
+		return new CoinData(this.spriteBatch, this.coin);
 	}
 
 	@Override
 	public void generateNew() {
-		if (CoinController.cc.activeCoinPattern != null) { 
-			this.coins = CoinController.cc.activeCoinPattern.getLine();
+		if (CoinController.cc.activePattern != null) {
+			this.coins = CoinController.cc.activePattern.getLine();
 		}
 	}
 
@@ -44,21 +41,20 @@ public class CoinData extends MovingData {
 		if (this.coins != null) {
 			for (int i = 0; i < coins.length; i++) {
 				if (coins[i] == 1) {
-					//TODO
 					//GameContainer.d.drawImage(this.coin, new Vector2(this.parent.position, (i-((float)this.coins.length)/2) * this.parent.parent.elementBounds.y), new Vector2(this.parent.parent.elementBounds.y));
+					this.spriteBatch.draw(this.coin, this.parent.position, (-i+((float)this.coins.length)/2) * this.parent.parent.elementBounds.y, this.parent.parent.elementBounds.x, this.parent.parent.elementBounds.y);
 				}
 			}
 		}
 	}
 	
 	public void remove(int startingY) {
-		System.out.println("Tryed to remove");
-
 		if (startingY > coins.length-3) {
 			startingY = coins.length-3;
 		}
+
 		for (int i = 0; i < 3; i++) {
 			coins[i + startingY] = 0;
 		}
-	}*/
+	}
 }	

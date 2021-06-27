@@ -1,0 +1,27 @@
+
+dune.png
+size: 1024, 128
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+l0
+  rotate: false
+  xy: 2, 2
+  size: 256, 64
+  orig: 256, 64
+  offset: 0, 0
+  index: -1
+l1
+  rotate: false
+  xy: 260, 2
+  size: 256, 64
+  orig: 256, 64
+  offset: 0, 0
+  index: -1
+l2
+  rotate: false
+  xy: 518, 2
+  size: 256, 64
+  orig: 256, 64
+  offset: 0, 0
+  index: -1

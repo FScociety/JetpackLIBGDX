@@ -1,5 +1,6 @@
 package de.soerensc.engine.ecs;
 
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import java.util.ArrayList;
@@ -8,6 +9,9 @@ public class World {
 
     public ArrayList<GameObject> gameObjectsInWorld = new ArrayList<>();
     public static SpriteBatch spriteBatch;
+
+    private BitmapFont debugFont = new BitmapFont();
+    private int renderCalls;
 
     public World() {
         spriteBatch = new SpriteBatch();
@@ -40,7 +44,11 @@ public class World {
             obj.render();
         }
 
+        debugFont.draw(spriteBatch, "RenderCalls: " + this.renderCalls +"", 0, 0);
+
         spriteBatch.end();
+
+        this.renderCalls = spriteBatch.renderCalls;
     }
 
     public void dispose() {

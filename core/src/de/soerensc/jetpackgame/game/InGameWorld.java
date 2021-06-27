@@ -1,17 +1,31 @@
 package de.soerensc.jetpackgame.game;
 
-import com.badlogic.gdx.graphics.Texture;
-import de.soerensc.engine.ecs.GameBehaviour;
 import de.soerensc.engine.ecs.GameObject;
 import de.soerensc.engine.ecs.World;
 import de.soerensc.jetpackgame.game.world.background.ParalaxBackground;
-import de.soerensc.jetpackgame.screen.Game;
+import de.soerensc.jetpackgame.game.world.foreground.saw.SawController;
+import de.soerensc.jetpackgame.game.world.foreground.wall.WallController;
+import de.soerensc.jetpackgame.game.world.foreground.coins.CoinController;
+import de.soerensc.jetpackgame.game.world.foreground.player.PlayerController;
 
 public class InGameWorld extends World {
 
     public void create() {
         GameObject background = new GameObject();
         background.addComponent(new ParalaxBackground(3));
-        this.add(background);
+        //this.add(background);
+
+        GameObject foreground = new GameObject();
+        WallController wc = new WallController();
+        foreground.addComponent(wc);
+        CoinController cc = new CoinController(null);
+        foreground.addComponent(cc);
+        SawController sc = new SawController();
+        foreground.addComponent(sc);
+        this.add(foreground);
+
+        GameObject player = new GameObject();
+        player.addComponent(new PlayerController(cc));
+        this.add(player);
     }
 }

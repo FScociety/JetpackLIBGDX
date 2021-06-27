@@ -4,6 +4,8 @@ import com.badlogic.gdx.Gdx;
 
 public class Boot extends com.badlogic.gdx.Game {
 
+    private SplashWorker splashWorker;
+
     public static Boot INSTANCE;
     private int screenWidth, screenHeight;
 
@@ -12,6 +14,8 @@ public class Boot extends com.badlogic.gdx.Game {
     }
 
     public void create() {
+        splashWorker.closeSplashScreen();
+
         this.screenWidth = Gdx.graphics.getWidth();
         this.screenHeight = Gdx.graphics.getHeight();
         setScreen(new Game());
@@ -31,5 +35,13 @@ public class Boot extends com.badlogic.gdx.Game {
 
     public void setScreenHeight(int screenHeight) {
         this.screenHeight = screenHeight;
+    }
+
+    public SplashWorker getSplashWorker() {
+        return this.splashWorker;
+    }
+
+    public void setSplashWorker(SplashWorker splashWorker) {
+        this.splashWorker = splashWorker;
     }
 }

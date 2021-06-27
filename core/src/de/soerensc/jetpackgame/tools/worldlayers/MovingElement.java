@@ -2,14 +2,15 @@ package de.soerensc.jetpackgame.tools.worldlayers;
 
 public class MovingElement {
     public  MovingLayer parent;
-    public  MovingData data;
+    public  MovingData[] data;
     private MovingElement follower;
 
     public boolean visible = true;
 
     public float position;
 
-    public MovingElement(MovingLayer parent, MovingData data, float position) {
+    public MovingElement(MovingLayer parent, MovingData[] data, float position) {
+
         this.parent = parent;
         this.data = data;
 
@@ -18,9 +19,15 @@ public class MovingElement {
 
     public void add(int i) {
         if (i > 0) {
-            MovingData newData = this.data.getNew();
+            MovingData[] newData = new MovingData[data.length];
+            for (int f = 0; f < data.length; f++) {
+                newData[f] = this.data[f].getNew();
+            }
+
             this.follower = new MovingElement(this.parent, newData, this.getFollowerPos());
-            newData.parent = this.follower;
+            for (int f = 0; f < data.length; f++) {
+                newData[f].parent = this.follower;
+            }
 
             this.follower.add(i-1);
 
@@ -57,6 +64,8 @@ public class MovingElement {
     }
 
     private void moveToEnd() {
+        double time = System.nanoTime();
+
         if (this.follower != null) {
             this.parent.start = this.follower;
         }
@@ -77,8 +86,11 @@ public class MovingElement {
 
     public void move(float speed) {
 
+        float oldPos = this.position;
+
         if (this.visible) {
-            this.position -= speed;
+            //TODO: Just for testing
+            this.position -= 5;
         }
 
         //Reached the end
@@ -90,8 +102,13 @@ public class MovingElement {
                 //Move to end for looping
                 this.moveToEnd();
 
+                //Else all objects would stop for one frame
+                this.parent.start.move(speed);
+
                 //Generate new DATA
-                this.data.generateNew();
+                for (MovingData datum : data) {
+                    datum.generateNew();
+                }
             }
         }
 
@@ -104,7 +121,9 @@ public class MovingElement {
         if (this.visible) {
 			/*GameContainer.d.setColor(Color.WHITE);
 			GameContainer.d.drawRect(new Vector2(this.position, -this.parent.elementBounds.y/2), this.parent.elementBounds);*/
-            this.data.render();
+            for (MovingData datum : data) {
+                datum.render();
+            }
         }
 
         if (this.follower != null) {

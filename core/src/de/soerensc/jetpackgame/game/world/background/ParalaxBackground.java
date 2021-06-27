@@ -31,7 +31,7 @@ public class ParalaxBackground extends GameBehaviour {
 	}
 	
 	public void setBackground(Background b) {
-		this.imageSize = new Vector2(b.images[0].getWidth(), b.images[0].getHeight());
+		this.imageSize = new Vector2(b.images[0].getRegionWidth(), b.images[0].getRegionHeight());
 		float aspectRatio = this.imageSize.x / this.imageSize.y;
 		this.imageSize.y *= 13;
 		this.imageSize.x = this.imageSize.y * aspectRatio;

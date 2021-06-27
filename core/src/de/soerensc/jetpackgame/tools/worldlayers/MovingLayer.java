@@ -2,9 +2,12 @@ package de.soerensc.jetpackgame.tools.worldlayers;
 
 import com.badlogic.gdx.math.Vector2;
 
+import java.util.ArrayList;
+
 public class MovingLayer {
 
-    private MovingData startingData;
+    public String name;
+    private MovingData[] data;
     public MovingElement start;
     public float speed;
 
@@ -19,7 +22,20 @@ public class MovingLayer {
     public MovingLayer(MovingData startingData, Vector2 elementBounds, float positionBounds, float speed) {
         this.elementBounds = elementBounds;
         this.positionBounds = positionBounds;
-        this.startingData = startingData;
+
+        //Just one Data information
+        data = new MovingData[1];
+        data[0] = startingData;
+
+        this.speed = speed;
+    }
+
+    public MovingLayer(MovingData[] startingData, Vector2 elementBounds, float positionBounds, float speed) {
+        this.elementBounds = elementBounds;
+        this.positionBounds = positionBounds;
+
+        //Apply more than one Data
+        this.data = startingData;
 
         this.speed = speed;
     }
@@ -27,7 +43,7 @@ public class MovingLayer {
     public void addInstant(int i) {
 
         if (start == null) {
-            start = new MovingElement(this, startingData, this.positionBounds);
+            start = new MovingElement(this, data, this.positionBounds);
             i--;
         }
         start.add(i);
@@ -35,7 +51,7 @@ public class MovingLayer {
 
     public void addOverTime(int i) {
         if (start == null) {
-            start = new MovingElement(this, startingData, -this.positionBounds + this.elementBounds.x);
+            start = new MovingElement(this, data, -this.positionBounds + this.elementBounds.x);
             i--;
         }
         start.add(i);
@@ -55,14 +71,15 @@ public class MovingLayer {
     }
 
     public void update(float delta) {
-        this.start.move((float) (speed * delta * 1000 * 10));
+
+        this.start.move(speed * delta * 1000);
     }
 
     public void render() {
         this.start.render();
     }
 
-	/*public int getAmoutOverScreen() {
+    /*public int getAmoutOverScreen() {
 		System.out.println("Generating Elements");
 		System.out.println("Screen size: " + GameContainer.windowSize);
 		System.out.println("Element Bounds: " + this.elementBounds);
