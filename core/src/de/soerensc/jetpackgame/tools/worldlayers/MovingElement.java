@@ -1,5 +1,7 @@
 package de.soerensc.jetpackgame.tools.worldlayers;
 
+import de.soerensc.jetpackgame.screen.Game;
+
 public class MovingElement {
     public  MovingLayer parent;
     public  MovingData[] data;
@@ -90,7 +92,7 @@ public class MovingElement {
 
         if (this.visible) {
             //TODO: Just for testing
-            this.position -= 5;
+            this.position -= speed;
         }
 
         //Reached the end
@@ -103,7 +105,14 @@ public class MovingElement {
                 this.moveToEnd();
 
                 //Else all objects would stop for one frame
-                this.parent.start.move(speed);
+                //TODO: StackOverflow Error when window is moved
+                //Also the coins move
+                //LOL Kinda gefixxt ====>
+
+                if (speed <= 100) {
+                    //Warning this has problems with small FPS
+                    this.parent.start.move(speed);
+                }
 
                 //Generate new DATA
                 for (MovingData datum : data) {

@@ -85,8 +85,14 @@ public class PlayerController extends GameBehaviour {
 		}
 
 	}
-	
+
+	@Override
 	public void render() {
 		this.spriteBatch.draw(testImage, -sizeY/4 + this.gameObject.transform.position.x, -sizeY/2 - this.gameObject.transform.position.y, sizeY/2, sizeY);
+	}
+
+	@Override
+	public void dispose() {
+		System.out.println("Me gpoing way");
 	}
 }

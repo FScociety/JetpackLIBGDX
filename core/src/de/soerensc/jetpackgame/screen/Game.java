@@ -18,6 +18,7 @@ import de.soerensc.jetpackgame.game.UiInterface;
 public class Game extends ScreenAdapter {
 
     private static boolean started = false;
+    private static boolean canUpdate = true;
 
     private Viewport viewport;
     public static AssetManager assetManager;
@@ -28,6 +29,7 @@ public class Game extends ScreenAdapter {
     private UiInterface ui;
 
     public Game() {
+
         profiler = new GLProfiler(Gdx.graphics);
         profiler.enable();
 
@@ -60,7 +62,8 @@ public class Game extends ScreenAdapter {
     }
 
     public void update(float delta) {
-        if (!Game.started) { return; }
+        if (!Game.started || !Game.canUpdate) { return; }
+
         World.spriteBatch.setProjectionMatrix(camera.combined);
 
         ui.act(delta);
@@ -72,6 +75,8 @@ public class Game extends ScreenAdapter {
         }
 
         this.camera.update();
+
+        Game.canUpdate = false;
     }
 
     @Override
@@ -92,6 +97,8 @@ public class Game extends ScreenAdapter {
                 " | TEXTUREBINDINGS: " + profiler.getTextureBindings() +
                 " | VERTICIES: " + profiler.getVertexCount().total);
         //ui.render();
+
+        Game.canUpdate = true;
     }
 
     @Override
@@ -106,5 +113,9 @@ public class Game extends ScreenAdapter {
         ui.getUiStage().getViewport().update(width, height, true);
         camera.zoom = (float)1080 / height;
         viewport.update(width, height);
+    }
+
+    public static boolean canUpdate() {
+        return Game.canUpdate;
     }
 }

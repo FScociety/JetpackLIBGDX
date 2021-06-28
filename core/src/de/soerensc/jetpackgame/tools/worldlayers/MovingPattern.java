@@ -35,7 +35,7 @@ public class MovingPattern {
 
             int[] lineConvert = new int[data.length];
             for (int charI = 0; charI < data.length; charI++) {
-                lineConvert[charI] = data[charI] == '0' ? 0 : 1;
+                lineConvert[charI] = Character.getNumericValue(data[charI]);
             }
 
             elements.add(lineConvert);

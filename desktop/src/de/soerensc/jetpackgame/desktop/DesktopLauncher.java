@@ -21,12 +21,11 @@ public class DesktopLauncher {
 
 		//TexturePacker.process(settings, "world/textures/backgrounds/dune", "world/textures/backgrounds/dune", "dune");
 
-		TexturePacker.process(settings, "world/textures/obstangles/saw", "world/textures/obstangles/saw", "saw");
+		TexturePacker.process(settings, "world/textures/obstangles/saw", "world/textures/obstangles/saw", "sawAtlas");
 
 
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 		config.vSyncEnabled = true;
-		config.backgroundFPS = 144;
 		config.foregroundFPS = 144;
 		config.title = "Jeptack - Game";
 		config.useGL30 = false;
@@ -34,7 +33,8 @@ public class DesktopLauncher {
 		config.height = 640;
 		Boot game = new Boot();
 		game.setSplashWorker(new DesktopSplashWorker());
-		new LwjglApplication(game, config);
+		LwjglApplication application = new LwjglApplication(game, config);
+
 
 
 		/*CONN connection = new CONN();

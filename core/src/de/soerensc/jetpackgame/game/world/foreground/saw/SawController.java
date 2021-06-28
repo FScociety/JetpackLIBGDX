@@ -17,7 +17,8 @@ public class SawController extends MovingPatternControllerBehaviour {
 
     private MovingLayer sawList;
     private TextureAtlas sawAtlas;
-    private SpriteAnimation spriteAnimation;
+
+    public static SpriteAnimation sawAnimation, horizontalSawAnimation, verticalsawAnimation;
 
     private float time;
     private float timeBounds;
@@ -31,10 +32,12 @@ public class SawController extends MovingPatternControllerBehaviour {
         }
 
         //Textures
-        sawAtlas = new TextureAtlas("world/textures/obstangles/saw/saw.atlas");
+        sawAtlas = new TextureAtlas("world/textures/obstangles/saw/sawAtlas.atlas");
 
         //Patterns
-        spriteAnimation = new SpriteAnimation(sawAtlas, 100);
+        this.sawAnimation = new SpriteAnimation(sawAtlas, 100);
+        this.horizontalSawAnimation = new SpriteAnimation(sawAtlas, 100);
+        this.verticalsawAnimation = new SpriteAnimation(sawAtlas, 100);
 
         this.patternPath = "world/sawPatterns";
         create(6, SawData.sawSize);
@@ -46,19 +49,23 @@ public class SawController extends MovingPatternControllerBehaviour {
 
     @Override
     public void start() {
-        SawData defaultSaw = new SawData(this.spriteBatch, spriteAnimation);
+        SawData defaultSaw = new SawData(this.spriteBatch);
         sawList = new MovingLayer(defaultSaw, new Vector2(100, 100), -1000, 1f);
         sawList.addInstant(22);
         defaultSaw.parent = sawList.start;
 
-        spriteAnimation.play();
+        sawAnimation.play("saw");
+        horizontalSawAnimation.play("horizontalSaw");
+        verticalsawAnimation.play("verticalSaw");
     }
 
     @Override
     public void update(float delta) {
         sawList.update(delta);
 
-        spriteAnimation.update(delta);
+        sawAnimation.update(delta);
+        horizontalSawAnimation.update(delta);
+        verticalsawAnimation.update(delta);
 
         if (this.time >= this.timeBounds) {
             if (this.activePattern.isFinished()) {

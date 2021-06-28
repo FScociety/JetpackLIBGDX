@@ -72,7 +72,8 @@ public class MovingLayer {
 
     public void update(float delta) {
 
-        this.start.move(speed * delta * 1000);
+        //TODO: Speed Adjust
+        this.start.move(speed * delta * 200);
     }
 
     public void render() {
