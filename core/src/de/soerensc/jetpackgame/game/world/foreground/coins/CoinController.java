@@ -35,7 +35,7 @@ public class CoinController extends MovingPatternControllerBehaviour {
 
 		//Patterns
 		this.patternPath = "world/coinPatterns";
-		create(7);
+		create(7, CoinData.coinSize);
 
 		Gdx.app.log("CoinController", "Coin Patterns were loaded");
 		

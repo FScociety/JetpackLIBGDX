@@ -8,7 +8,9 @@ public class SawData extends MovingData {
 
     private SpriteAnimation sawAnimation;
 
-    int[] saws = new int[3];
+    public static final int sawSize = 7;
+
+    int[] saws = new int[sawSize];
 
     public SawData(SpriteBatch spriteBatch) { super(spriteBatch); }
 
@@ -35,7 +37,7 @@ public class SawData extends MovingData {
             for (int i = 0; i < this.saws.length; i++) {
                 if (this.saws[i] != 0) {
                     //GameContainer.d.drawImage(this.coin, new Vector2(this.parent.position, (i-((float)this.coins.length)/2) * this.parent.parent.elementBounds.y), new Vector2(this.parent.parent.elementBounds.y));
-                    this.spriteBatch.draw(this.sawAnimation.getCurrentFrame(), this.parent.position, (-i+((float)this.saws.length)/2) * this.parent.parent.elementBounds.y, this.parent.parent.elementBounds.x, this.parent.parent.elementBounds.y);
+                    this.spriteBatch.draw(this.sawAnimation.getCurrentFrame(), this.parent.position, (((float)this.saws.length-2)/2 - i) * this.parent.parent.elementBounds.y, this.parent.parent.elementBounds.x, this.parent.parent.elementBounds.y);
                 }
             }
         }

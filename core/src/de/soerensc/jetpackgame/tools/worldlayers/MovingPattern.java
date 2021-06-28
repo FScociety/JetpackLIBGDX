@@ -13,13 +13,16 @@ public class MovingPattern {
     private int posCount = 0;
     private int randomPosY = 0;
 
+    private int maxArraySize;
+
     public static String loadingPath;
 
     public static void setPath(String path) {
         MovingPattern.loadingPath = path;
     }
 
-    public MovingPattern(int number) {
+    public MovingPattern(int number, int size) {
+        this.maxArraySize = size;
         //FileHandle handle = Gdx.files.internal("world/coinPatterns/pattern-" + number + ".txt");
         FileHandle handle = Gdx.files.internal(MovingPattern.loadingPath + "/pattern-" + number + ".txt");
 
@@ -37,8 +40,6 @@ public class MovingPattern {
 
             elements.add(lineConvert);
         }
-
-
 
         //SAVING
         int width = elements.get(0).length;
@@ -59,7 +60,7 @@ public class MovingPattern {
     public int[] getLine() {
         this.posCount++;
 
-        int[] stripe = new int[CoinData.coinSize];
+        int[] stripe = new int[maxArraySize];
 
         if (this.posCount <= this.pattern.length) {
 
@@ -73,6 +74,6 @@ public class MovingPattern {
     }
 
     public void newYOffset() {
-        randomPosY = (int) Math.round(Math.random()*(CoinData.coinSize-this.pattern[0].length));
+        randomPosY = (int) Math.round(Math.random()*(maxArraySize-this.pattern[0].length));
     }
 }

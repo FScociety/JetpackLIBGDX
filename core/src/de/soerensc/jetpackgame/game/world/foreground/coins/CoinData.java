@@ -11,7 +11,7 @@ public class CoinData extends MovingData {
 		super(spriteBatch);
 	}
 
-	public static int coinSize = 14;
+	public static final int coinSize = 14;
 	
 	int[] coins = new int[coinSize];
 	

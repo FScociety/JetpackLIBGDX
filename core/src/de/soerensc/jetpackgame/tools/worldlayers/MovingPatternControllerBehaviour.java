@@ -9,13 +9,13 @@ public abstract class MovingPatternControllerBehaviour extends GameBehaviour {
 
     public String patternPath = "";
 
-    public void create(int patternsSize) {
+    public void create(int patternsSize, int patternHeight) {
         patterns = new MovingPattern[patternsSize];
 
         MovingPattern.loadingPath = patternPath;
 
         for (int i = 0; i < patternsSize; i++) {
-            this.patterns[i] = new MovingPattern(i);
+            this.patterns[i] = new MovingPattern(i, patternHeight);
         }
     }
 
