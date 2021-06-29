@@ -1,35 +1,76 @@
 package de.soerensc.jetpackgame.tools.animation;
 
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.math.Vector;
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.Logger;
 
 public class SpriteAnimation {
 
-    private TextureAtlas spriteAtlas;
-    private TextureAtlas.AtlasRegion[] extractedAtlas;
+    private final TextureRegion[] animationPart;
 
     private int index;
-    private int length;
     private float time;
-    private float frameTime;
+    private float frameTime = 0.1f;
     private boolean running = false;
+    public boolean looping = true;
+    private boolean linked = false;
     private TextureRegion currentFrame;
+
+    private Array<SpriteAnimation> linkedAnimations;
 
     private int animStart, animEnd;
 
-    public boolean looping = true;
+    private SpriteAnimation(TextureRegion[] animationPart, float frameTime, boolean looping) {
+        this.animationPart = animationPart;
+        this.index = 0;
+        this.frameTime = frameTime;
+        this.running = false;
+        this.looping = looping;
+        this.currentFrame = animationPart[0];
+    }
 
-    public SpriteAnimation(TextureAtlas spriteAtlas, float framesPerSecond) {
-        this.spriteAtlas = spriteAtlas;
-        this.setFramesPerSecond(framesPerSecond);
+    public void link(SpriteAnimation linked) {
+        if (this.linkedAnimations == null) {
+            this.linkedAnimations = new Array<>();
+        }
 
-        this.length = spriteAtlas.getRegions().size;
-        this.currentFrame = this.spriteAtlas.getRegions().get(0);
+        this.linkedAnimations.add(linked);
+        this.linked = true;
+    }
+
+    public boolean isLinked() {
+        return this.linked;
+    }
+
+    public SpriteAnimation(TextureAtlas textureAtlas, String name) {
+
+        Array<TextureRegion> regions = new Array<TextureRegion>();
+
+        int i = 0;
+
+        while (true) {
+            TextureRegion region = textureAtlas.findRegion(name + i);
+
+            if (region != null) {
+                regions.add(region);
+            } else if (i != 1 && i != 0) {
+                Gdx.app.log("SpriteAnimation", "Found end for SpriteAnimation : '" + name + "', at " + i);
+                break;
+            }
+
+            i++;
+        }
+
+        this.animationPart = regions.toArray(TextureRegion.class);
+        this.currentFrame = this.animationPart[0];
+    }
+
+    public SpriteAnimation(TextureAtlas textureAtlas) {
+        this.animationPart = textureAtlas.getRegions().toArray(TextureRegion.class);
+        //this.currentFrame = this.animationPart[0];
     }
 
     public void update(float delta) {
@@ -37,17 +78,25 @@ public class SpriteAnimation {
             this.time += delta;
 
             if (this.time >= this.frameTime) {
-                this.index++;
                 this.time = 0;
 
-                if (this.looping) {
-                    if (this.index > this.animEnd) {
-                        this.index = this.animStart;
+
+                if (this.index > this.animationPart.length-1) {
+                    this.index = 0;
+                    if (!this.looping) {
+                        this.running = false;
                     }
-                } else {
-                    this.running = false;
                 }
-                this.currentFrame = this.extractedAtlas[index];
+
+                if (this.running) this.currentFrame = this.animationPart[index];
+
+                this.index++;
+            }
+        }
+
+        if (this.linkedAnimations != null) {
+            for (SpriteAnimation spriteAnimation : this.linkedAnimations) {
+                spriteAnimation.update(delta);
             }
         }
     }
@@ -56,33 +105,8 @@ public class SpriteAnimation {
         this.frameTime = 1 / framesPerSecond;
     }
 
-    public void play(String name) {
-        extractedAtlas = this.spriteAtlas.getRegions().toArray(TextureAtlas.AtlasRegion.class);
-
-        for (int i = 0; i < extractedAtlas.length; i++) {
-            if (extractedAtlas[i].name.equals(name + "0")) {
-                this.animStart = i;
-                break;
-            }
-        }
-
-        int i = 0;
-        boolean foundEnd = false;
-        while (!foundEnd) {
-            i++;
-            TextureAtlas.AtlasRegion region = this.spriteAtlas.findRegion(name + i);
-
-            if (region == null) {
-                System.out.println("Could not find: " + name + i);
-                foundEnd = true;
-            }
-
-        this.animEnd = this.animStart + i - 1;
-        }
-
-        System.out.println("Found a SpriteAnimation at: " + this.animStart + " | " + this.animEnd + " with name: " + name);
-
-        this.index = this.animStart;
+    public void play() {
+        this.index = 0;
         this.running = true;
     }
 
@@ -96,5 +120,14 @@ public class SpriteAnimation {
 
     public boolean isRunning() {
         return this.running;
+    }
+
+    public SpriteAnimation getCopy() {
+        return new SpriteAnimation(this.animationPart, this.frameTime, this.looping);
+    }
+
+    public void setOffset(int offset) {
+        //TODO: IDK if working the hell shit
+        this.time += offset * this.frameTime;
     }
 }

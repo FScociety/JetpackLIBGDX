@@ -23,6 +23,7 @@ public class DesktopLauncher {
 
 		TexturePacker.process(settings, "world/textures/obstangles/saw", "world/textures/obstangles/saw", "sawAtlas");
 
+		TexturePacker.process(settings, "world/textures/coins", "world/textures/coins", "coinAtlas");
 
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 		config.vSyncEnabled = true;

@@ -3,6 +3,7 @@ package de.soerensc.jetpackgame.game;
 import de.soerensc.engine.ecs.GameObject;
 import de.soerensc.engine.ecs.World;
 import de.soerensc.jetpackgame.game.world.background.ParalaxBackground;
+import de.soerensc.jetpackgame.game.world.foreground.ObstangleSpawner;
 import de.soerensc.jetpackgame.game.world.foreground.saw.SawController;
 import de.soerensc.jetpackgame.game.world.foreground.wall.WallController;
 import de.soerensc.jetpackgame.game.world.foreground.coins.CoinController;
@@ -18,10 +19,11 @@ public class InGameWorld extends World {
         GameObject foreground = new GameObject();
         WallController wc = new WallController();
         foreground.addComponent(wc);
-        CoinController cc = new CoinController(null);
+        CoinController cc = new CoinController();
         foreground.addComponent(cc);
         SawController sc = new SawController();
         foreground.addComponent(sc);
+        foreground.addComponent(new ObstangleSpawner());
         this.add(foreground);
 
         GameObject player = new GameObject();

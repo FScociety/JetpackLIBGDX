@@ -1,13 +1,14 @@
 package de.soerensc.jetpackgame.tools.worldlayers;
 
 import com.badlogic.gdx.math.Vector2;
+import de.soerensc.jetpackgame.game.world.foreground.player.PlayerController;
 
 import java.util.ArrayList;
 
 public class MovingLayer {
 
     public String name;
-    private MovingData[] data;
+    private MovingData data;
     public MovingElement start;
     public float speed;
 
@@ -20,17 +21,6 @@ public class MovingLayer {
     public int elements = 0;
 
     public MovingLayer(MovingData startingData, Vector2 elementBounds, float positionBounds, float speed) {
-        this.elementBounds = elementBounds;
-        this.positionBounds = positionBounds;
-
-        //Just one Data information
-        data = new MovingData[1];
-        data[0] = startingData;
-
-        this.speed = speed;
-    }
-
-    public MovingLayer(MovingData[] startingData, Vector2 elementBounds, float positionBounds, float speed) {
         this.elementBounds = elementBounds;
         this.positionBounds = positionBounds;
 
@@ -70,10 +60,14 @@ public class MovingLayer {
         return this.start.get(i-1);
     }
 
+    public MovingElement getLast() {
+        return this.start.getEnd();
+    }
+
     public void update(float delta) {
 
         //TODO: Speed Adjust
-        this.start.move(speed * delta * 200);
+        this.start.move(speed * delta * 500 * PlayerController.movingSpeed);
     }
 
     public void render() {

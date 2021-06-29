@@ -1,17 +1,18 @@
 package de.soerensc.jetpackgame.tools.worldlayers;
 
 import de.soerensc.jetpackgame.screen.Game;
+import de.soerensc.ponggame.objects.Player;
 
 public class MovingElement {
     public  MovingLayer parent;
-    public  MovingData[] data;
+    public  MovingData data;
     private MovingElement follower;
 
     public boolean visible = true;
 
     public float position;
 
-    public MovingElement(MovingLayer parent, MovingData[] data, float position) {
+    public MovingElement(MovingLayer parent, MovingData data, float position) {
 
         this.parent = parent;
         this.data = data;
@@ -21,15 +22,10 @@ public class MovingElement {
 
     public void add(int i) {
         if (i > 0) {
-            MovingData[] newData = new MovingData[data.length];
-            for (int f = 0; f < data.length; f++) {
-                newData[f] = this.data[f].getNew();
-            }
+            MovingData newData = this.data.getNew();
 
             this.follower = new MovingElement(this.parent, newData, this.getFollowerPos());
-            for (int f = 0; f < data.length; f++) {
-                newData[f].parent = this.follower;
-            }
+            newData.parent = this.follower;
 
             this.follower.add(i-1);
 
@@ -91,7 +87,6 @@ public class MovingElement {
         float oldPos = this.position;
 
         if (this.visible) {
-            //TODO: Just for testing
             this.position -= speed;
         }
 
@@ -115,24 +110,24 @@ public class MovingElement {
                 }
 
                 //Generate new DATA
-                for (MovingData datum : data) {
-                    datum.generateNew();
-                }
+                data.generateNew();
             }
         }
 
         if (this.follower != null) {
             this.follower.move(speed);
         }
+
+        //TODO: TEST
+
+        this.data.update();
     }
 
     public void render() {
         if (this.visible) {
 			/*GameContainer.d.setColor(Color.WHITE);
 			GameContainer.d.drawRect(new Vector2(this.position, -this.parent.elementBounds.y/2), this.parent.elementBounds);*/
-            for (MovingData datum : data) {
-                datum.render();
-            }
+            data.render();
         }
 
         if (this.follower != null) {

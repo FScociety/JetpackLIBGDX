@@ -74,7 +74,7 @@ public class PlayerController extends GameBehaviour {
 		
 		
 
-		CoinData middle = (CoinData) cc.coinList.start.get(20).data[0];
+		CoinData middle = (CoinData) cc.coinList.start.get(20).data;
 		if (middle != null) {
 			
 			//float posY = this.gameObject.getTransformWithCaution().position.y;
@@ -83,6 +83,8 @@ public class PlayerController extends GameBehaviour {
 			
 			middle.remove((int) posY);
 		}
+
+		PlayerController.movingSpeed *= 1 + delta / 100;
 
 	}
 

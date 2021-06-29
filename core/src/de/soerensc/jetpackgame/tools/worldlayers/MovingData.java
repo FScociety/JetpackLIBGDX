@@ -15,5 +15,7 @@ public class MovingData {
 
     public void generateNew() {}
 
+    public void update() {}
+
     public void render() {}
 }
