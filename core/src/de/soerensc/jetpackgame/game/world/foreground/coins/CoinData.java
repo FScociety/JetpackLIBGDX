@@ -13,8 +13,7 @@ public class CoinData extends MovingData {
 
 	public static final int coinSize = 14;
 	
-	private int[] coins = new int[coinSize];
-	private SpriteAnimation[] coinsAnimations = new SpriteAnimation[coinSize];
+	private Coin[] coins = new Coin[coinSize];
 
 	private SpriteAnimation destroyAnimation;
 	private SpriteAnimation rollingAnimation;
@@ -22,17 +21,21 @@ public class CoinData extends MovingData {
 	public CoinData(SpriteBatch spriteBatch, SpriteAnimation rollingAnimation, SpriteAnimation destroyAnimation) {
 		super(spriteBatch);
 
-		this.generateNew();
-
-		for (int i = 0; i < this.coins.length; i++) {
+		/*for (int i = 0; i < this.coins.length; i++) {
 			this.coinsAnimations[i] = rollingAnimation.getCopy();
 			this.coinsAnimations[i].setOffset(i);
 			this.coinsAnimations[i].play();
 
-			if (!rollingAnimation.isLinked()) {
+			if (!this.coinsAnimations[i].isLinked()) {
 				rollingAnimation.link(this.coinsAnimations[i]);
 			}
+		}*/
+
+		for (int i = 0; i < this.coins.length; i++) {
+			this.coins[i] = new Coin(i, rollingAnimation, destroyAnimation);
 		}
+
+		this.generateNew();
 
 		this.rollingAnimation = rollingAnimation;
 		this.destroyAnimation = destroyAnimation;
@@ -46,7 +49,11 @@ public class CoinData extends MovingData {
 	@Override
 	public void generateNew() {
 		if (CoinController.coinController.activePattern != null) {
-			this.coins = CoinController.coinController.activePattern.getLine();
+			int[] intCoins = CoinController.coinController.activePattern.getLine();
+
+			for (int i = 0; i < intCoins.length; i++) {
+				this.coins[i].newCoin(intCoins[i]);
+			}
 		}
 	}
 
@@ -54,8 +61,8 @@ public class CoinData extends MovingData {
 	public void render() {
 		if (this.coins != null) {
 			for (int i = 0; i < coins.length; i++) {
-				if (coins[i] == 1) {
-					this.spriteBatch.draw(this.coinsAnimations[i].getCurrentFrame(), this.parent.position, (-i + ((float) this.coins.length) / 2) * this.parent.parent.elementBounds.y, this.parent.parent.elementBounds.x, this.parent.parent.elementBounds.y);
+				if (coins[i].isActive()) {
+					this.spriteBatch.draw(this.coins[i].getImage(), this.parent.position, (-i + ((float) this.coins.length) / 2) * this.parent.parent.elementBounds.y, this.parent.parent.elementBounds.x, this.parent.parent.elementBounds.y);
 				}
 			}
 		}
@@ -64,9 +71,11 @@ public class CoinData extends MovingData {
 	@Override
 	public void update() {
 		for (int i = 0; i < coins.length; i++) {
-			if (!this.coinsAnimations[i].isRunning()) {
+			/*if (!this.coinsAnimations[i].isRunning()) {
 				this.coins[i] = 0;
-			}
+				this.coinsAnimations[i] = this.rollingAnimation;
+			}*/
+			this.coins[i].update();
 		}
 	}
 	
@@ -76,13 +85,13 @@ public class CoinData extends MovingData {
 		}
 
 		for (int i = 0; i < 3; i++) {
-			//coins[i + startingY] = 0;
-			SpriteAnimation destroyAnimationCopy = destroyAnimation.getCopy();
-			coinsAnimations[i + startingY] = destroyAnimationCopy;
+			/*SpriteAnimation destroyAnimationCopy = destroyAnimation.getCopy();
+			coins[i + startingY] = destroyAnimationCopy;
 			destroyAnimationCopy.play();
 			if (!destroyAnimationCopy.isLinked()) {
 				destroyAnimation.link(destroyAnimationCopy);
-			}
+			}*/
+			coins[i + startingY].setActive(0);
 		}
 	}
 }	

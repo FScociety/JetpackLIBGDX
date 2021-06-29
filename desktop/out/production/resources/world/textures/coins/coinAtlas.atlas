@@ -11,13 +11,6 @@ coinDestory1
   orig: 16, 16
   offset: 0, 0
   index: -1
-coinRotate1
-  rotate: false
-  xy: 2, 2
-  size: 16, 16
-  orig: 16, 16
-  offset: 0, 0
-  index: -1
 coinDestory2
   rotate: false
   xy: 20, 2
@@ -46,7 +39,7 @@ coinDestory5
   orig: 16, 16
   offset: 0, 0
   index: -1
-coinDestory6
+coinRotate1
   rotate: false
   xy: 92, 2
   size: 16, 16

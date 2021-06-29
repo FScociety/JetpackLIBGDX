@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
 import de.soerensc.engine.ecs.GameBehaviour;
+import de.soerensc.jetpackgame.game.world.foreground.ObstangleSpawner;
 import de.soerensc.jetpackgame.game.world.foreground.saw.SawController;
 import de.soerensc.jetpackgame.game.world.foreground.wall.WallController;
 import de.soerensc.jetpackgame.tools.animation.SpriteAnimation;
@@ -48,7 +49,7 @@ public class CoinController extends MovingPatternControllerBehaviour {
 
 		Gdx.app.log("CoinController", "Coin Patterns were loaded");
 		
-		newPattern();
+		//newPattern();
 	}
 	
 	public void start() {
@@ -70,6 +71,9 @@ public class CoinController extends MovingPatternControllerBehaviour {
 		//System.out.println(this.activeCoinPattern + "[s size: " + this.coinPatterns.length + "; " + random);
 		
 		this.activePattern.newYOffset();
+
+		ObstangleSpawner.coinPattern = this.activePattern;
+
 		return this.activePattern;
 	}
 	

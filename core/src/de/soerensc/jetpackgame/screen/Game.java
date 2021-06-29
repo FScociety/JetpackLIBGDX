@@ -17,6 +17,8 @@ import de.soerensc.jetpackgame.game.UiInterface;
 
 public class Game extends ScreenAdapter {
 
+    public static float delta;
+
     private static boolean started = false;
     private static boolean canUpdate = true;
 
@@ -77,6 +79,8 @@ public class Game extends ScreenAdapter {
         this.camera.update();
 
         Game.canUpdate = false;
+
+        Game.delta = delta;
     }
 
     @Override

@@ -16,10 +16,7 @@ public class SpriteAnimation {
     private float frameTime = 0.1f;
     private boolean running = false;
     public boolean looping = true;
-    private boolean linked = false;
     private TextureRegion currentFrame;
-
-    private Array<SpriteAnimation> linkedAnimations;
 
     private int animStart, animEnd;
 
@@ -30,19 +27,6 @@ public class SpriteAnimation {
         this.running = false;
         this.looping = looping;
         this.currentFrame = animationPart[0];
-    }
-
-    public void link(SpriteAnimation linked) {
-        if (this.linkedAnimations == null) {
-            this.linkedAnimations = new Array<>();
-        }
-
-        this.linkedAnimations.add(linked);
-        this.linked = true;
-    }
-
-    public boolean isLinked() {
-        return this.linked;
     }
 
     public SpriteAnimation(TextureAtlas textureAtlas, String name) {
@@ -93,12 +77,6 @@ public class SpriteAnimation {
                 this.index++;
             }
         }
-
-        if (this.linkedAnimations != null) {
-            for (SpriteAnimation spriteAnimation : this.linkedAnimations) {
-                spriteAnimation.update(delta);
-            }
-        }
     }
 
     public void setFramesPerSecond(float framesPerSecond) {
@@ -108,6 +86,7 @@ public class SpriteAnimation {
     public void play() {
         this.index = 0;
         this.running = true;
+        this.currentFrame = this.animationPart[0];
     }
 
     public void stop() {
