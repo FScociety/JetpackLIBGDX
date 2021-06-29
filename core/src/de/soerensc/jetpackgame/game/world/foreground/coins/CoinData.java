@@ -47,7 +47,6 @@ public class CoinData extends MovingData {
 	public void generateNew() {
 		if (CoinController.coinController.activePattern != null) {
 			this.coins = CoinController.coinController.activePattern.getLine();
-			this.rollingAnimation.play();
 		}
 	}
 

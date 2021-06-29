@@ -66,6 +66,7 @@ project(":core") {
         api "com.badlogicgames.ashley:ashley:$ashleyVersion"
         api "com.badlogicgames.gdx-controllers:gdx-controllers-core:$gdxControllersVersion"
         api "com.kotcrab.vis:vis-ui:1.3.0"
+        api "com.oracle:ojdbc7:12.1.0.1"
         
     }
 }
