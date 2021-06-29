@@ -4,9 +4,11 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
 import de.soerensc.engine.ecs.GameBehaviour;
+import de.soerensc.jetpackgame.game.UiInterface;
 import de.soerensc.jetpackgame.game.world.foreground.coins.CoinController;
 import de.soerensc.jetpackgame.game.world.foreground.coins.CoinData;
 import de.soerensc.jetpackgame.game.world.foreground.saw.SawData;
+import de.soerensc.ponggame.objects.Player;
 
 public class PlayerController extends GameBehaviour {
 	
@@ -21,8 +23,10 @@ public class PlayerController extends GameBehaviour {
 	float velocityY = 0;
 	public static float velX;
 	float forceY = 9.81f;
+
+	private boolean started = false;
 	
-	public static float movingSpeed = 1;
+	public static float movingSpeed = 0;
 	
 	private Texture testImage;
 	
@@ -98,6 +102,11 @@ public class PlayerController extends GameBehaviour {
 
 		PlayerController.movingSpeed *= 1 + delta / 100;*/
 
+		if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE) && !started){
+			this.started = true;
+			PlayerController.movingSpeed = 1;
+			UiInterface.playText.setVisible(false);
+		}
 	}
 
 	@Override
