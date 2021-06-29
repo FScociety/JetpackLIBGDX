@@ -100,7 +100,7 @@ public class Game extends ScreenAdapter {
                 " | DRAWCALLS: " + profiler.getDrawCalls() +
                 " | TEXTUREBINDINGS: " + profiler.getTextureBindings() +
                 " | VERTICIES: " + profiler.getVertexCount().total);
-        //ui.render();
+        ui.render();
 
         Game.canUpdate = true;
     }

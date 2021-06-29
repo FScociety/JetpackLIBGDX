@@ -19,13 +19,18 @@ public class UiInterface {
 
     private Skin uiSkin;
     private Stage uiStage;
-
     BitmapFont defaultFont;
+
+    public int currentScore;
+    public int currentCoins;
 
     public UiInterface() {
         uiSkin = new Skin(Gdx.files.internal("metalui/metal-ui.json"));
         uiStage = new Stage(new ScreenViewport());
         Gdx.input.setInputProcessor(this.uiStage);
+
+        currentScore = 17286;
+        currentCoins = 2346;
 
         this.loadDefaultFont();
     }
@@ -33,7 +38,7 @@ public class UiInterface {
     private void loadDefaultFont() {
         FreeTypeFontGenerator generator = new FreeTypeFontGenerator(Gdx.files.internal("ui/fonts/tight_pixel.ttf"));
         FreeTypeFontGenerator.FreeTypeFontParameter parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
-        parameter.size = 100;
+        parameter.size = 40;
         parameter.borderWidth = 1;
         parameter.color = Color.WHITE;
         defaultFont = generator.generateFont(parameter); // font size 24 pixels
@@ -42,17 +47,18 @@ public class UiInterface {
 
 
     public void create() {
+
         uiStage.setDebugAll(true);
 
-        Table completeTable = new Table();
+        /*Table completeTable = new Table();
         completeTable.setFillParent(true);
         completeTable.left();
         completeTable.top();
+        completeTable.padTop(30);
         uiStage.addActor(completeTable);
 
-
         Table statsTable = new Table();
-        statsTable.pad(20);
+        statsTable.pad(8);
         statsTable.left().top();
         statsTable.defaults().align(Align.left);
         completeTable.add(statsTable);
@@ -60,19 +66,30 @@ public class UiInterface {
         Label.LabelStyle labelStyle = new Label.LabelStyle();
         labelStyle.font = defaultFont;
 
-        Label scoreLabel = new Label("Score: 87236m",labelStyle);
+        Label scoreLabel = new Label("Score: " + currentScore,labelStyle);
         scoreLabel.setSize(100, 100);
-        scoreLabel.setPosition(100, Gdx.graphics.getHeight()-50);
+        scoreLabel.setPosition(100, Gdx.graphics.getHeight()-10);
         statsTable.add(scoreLabel);
 
         statsTable.row();
 
-        Label moneyLabel = new Label("Coins: 8726",labelStyle);
+        Label moneyLabel = new Label("Coins: " + currentCoins,labelStyle);
         moneyLabel.setSize(100, 100);
-        moneyLabel.setPosition(100, Gdx.graphics.getHeight()-50);
+        moneyLabel.setPosition(100, Gdx.graphics.getHeight()-10);
         statsTable.add(moneyLabel);
 
-        Container exitButtonContainer = new Container();
+        Table spaceTable = new Table();
+        spaceTable.padLeft(Value.percentWidth(0.38f));
+        spaceTable.setFillParent(true);
+        spaceTable.defaults().align(Align.center);
+        uiStage.addActor(spaceTable);
+
+        Label spaceLabel = new Label("SPACE - START GAME",labelStyle);
+        spaceTable.add(spaceLabel).grow();*/
+
+        Table
+
+        /* Container exitButtonContainer = new Container();
         exitButtonContainer.right().top();
         exitButtonContainer.setLayoutEnabled(true);
         completeTable.add(exitButtonContainer);
@@ -104,7 +121,7 @@ public class UiInterface {
 
         Button settingsButton = new Button(uiSkin);
         rootUiTable.add(settingsButton);
-
+        */
     }
 
     public void render() {

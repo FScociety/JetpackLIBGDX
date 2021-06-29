@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.Texture;
 import de.soerensc.engine.ecs.GameBehaviour;
 import de.soerensc.jetpackgame.game.world.foreground.coins.CoinController;
 import de.soerensc.jetpackgame.game.world.foreground.coins.CoinData;
+import de.soerensc.jetpackgame.game.world.foreground.saw.SawData;
 
 public class PlayerController extends GameBehaviour {
 	
@@ -74,17 +75,28 @@ public class PlayerController extends GameBehaviour {
 		
 		
 
-		CoinData middle = (CoinData) cc.coinList.start.get(20).data;
-		if (middle != null) {
-			
-			//float posY = this.gameObject.getTransformWithCaution().position.y;
+		//Coin Collision
+		CoinData middleCoin = (CoinData) cc.coinList.start.get(20).data;
+		if (middleCoin != null) {
 			posY /= cc.coinSize;
 			posY += CoinData.coinSize/2;
-			
-			middle.remove((int) posY);
+
+			middleCoin.remove((int) posY);
 		}
 
-		PlayerController.movingSpeed *= 1 + delta / 100;
+
+		//TODO: Anspassen
+
+		/*//SawCollision
+		SawData middleSaw = (SawData) cc.coinList.start.get(10).data;
+		if (middleSaw != null) {
+			posY /= cc.coinSize;
+			posY += CoinData.coinSize/2;
+
+			middleCoin.remove((int) posY);
+		}
+
+		PlayerController.movingSpeed *= 1 + delta / 100;*/
 
 	}
 
