@@ -19,7 +19,7 @@ public class SawController extends MovingPatternControllerBehaviour {
 
     public static SawController sawController;
 
-    private MovingLayer sawList;
+    public MovingLayer sawList;
     private TextureAtlas sawAtlas;
 
     public static SpriteAnimation sawAnimation, horizontalSawAnimation, verticalsawAnimation;

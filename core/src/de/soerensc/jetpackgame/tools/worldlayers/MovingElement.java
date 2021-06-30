@@ -1,8 +1,5 @@
 package de.soerensc.jetpackgame.tools.worldlayers;
 
-import de.soerensc.jetpackgame.screen.Game;
-import de.soerensc.ponggame.objects.Player;
-
 public class MovingElement {
     public  MovingLayer parent;
     public  MovingData data;

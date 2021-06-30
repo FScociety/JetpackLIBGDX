@@ -37,7 +37,7 @@ public class SpriteAnimation {
 
         while (true) {
             TextureRegion region = textureAtlas.findRegion(name + i);
-            TextureRegion region2 = textureAtlas.findRegion(name.substring(0, name.length() - 1), +i);
+            TextureRegion region2 = textureAtlas.findRegion(name.substring(0, name.length() - 1) + i);
 
             if (region != null) {
                 regions.add(region);

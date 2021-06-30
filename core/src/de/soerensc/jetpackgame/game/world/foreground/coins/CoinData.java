@@ -1,7 +1,5 @@
 package de.soerensc.jetpackgame.game.world.foreground.coins;
 
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import de.soerensc.jetpackgame.tools.animation.SpriteAnimation;
 import de.soerensc.jetpackgame.tools.worldlayers.MovingData;
@@ -92,6 +90,11 @@ public class CoinData extends MovingData {
 				destroyAnimation.link(destroyAnimationCopy);
 			}*/
 			coins[i + startingY].setActive(0);
+
+			if (coins[i + startingY].isActive()) {
+				//UiInterface.coins++;
+				//UiInterface.currentCoins.setText("Coins: " + UiInterface.coins);
+			}
 		}
 	}
 }	

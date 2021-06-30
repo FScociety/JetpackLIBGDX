@@ -7,13 +7,13 @@ import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.profiling.GLProfiler;
+import com.badlogic.gdx.utils.viewport.FillViewport;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import de.soerensc.engine.ecs.World;
 import de.soerensc.jetpackgame.game.InGameWorld;
-import de.soerensc.jetpackgame.game.UiInterface;
+import de.soerensc.jetpackgame.game.ui.UiInterface;
 
 public class Game extends ScreenAdapter {
 
@@ -22,7 +22,7 @@ public class Game extends ScreenAdapter {
     private static boolean started = false;
     private static boolean canUpdate = true;
 
-    private Viewport viewport;
+    private Viewport gameViewport;
     public static AssetManager assetManager;
     private GLProfiler profiler;
 
@@ -40,7 +40,7 @@ public class Game extends ScreenAdapter {
 
         camera = new OrthographicCamera(Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         camera.update();
-        viewport = new ScreenViewport(camera);
+        gameViewport = new ScreenViewport(camera);
 
         ui = new UiInterface();
         ui.create();
@@ -116,7 +116,8 @@ public class Game extends ScreenAdapter {
     public void resize(int width, int height) {
         ui.getUiStage().getViewport().update(width, height, true);
         camera.zoom = (float)1080 / height;
-        viewport.update(width, height);
+
+        this.gameViewport.update(width, height);
     }
 
     public static boolean canUpdate() {

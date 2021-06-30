@@ -21,7 +21,7 @@ public class DesktopLauncher {
 
 		//TexturePacker.process(settings, "world/textures/backgrounds/dune", "world/textures/backgrounds/dune", "dune");
 
-		//TexturePacker.process(settings, "world/textures/obstangles/saw", "world/textures/obstangles/saw", "sawAtlas");
+		TexturePacker.process(settings, "world/textures/obstangles/saw", "world/textures/obstangles/saw", "sawAtlas");
 
 		//TexturePacker.process(settings, "world/textures/coins", "world/textures/coins", "coinAtlas");
 
