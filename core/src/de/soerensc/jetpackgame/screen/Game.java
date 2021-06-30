@@ -26,7 +26,7 @@ public class Game extends ScreenAdapter {
     public static AssetManager assetManager;
     private GLProfiler profiler;
 
-    private OrthographicCamera camera;
+    public static OrthographicCamera camera;
     private World world;
     private UiInterface ui;
 

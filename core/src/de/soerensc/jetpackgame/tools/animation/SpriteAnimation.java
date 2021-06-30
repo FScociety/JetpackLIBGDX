@@ -37,9 +37,12 @@ public class SpriteAnimation {
 
         while (true) {
             TextureRegion region = textureAtlas.findRegion(name + i);
+            TextureRegion region2 = textureAtlas.findRegion(name.substring(0, name.length() - 1), +i);
 
             if (region != null) {
                 regions.add(region);
+            } else if (region2 != null) {
+                regions.add(region2);
             } else if (i != 1 && i != 0) {
                 Gdx.app.log("SpriteAnimation", "Found end for SpriteAnimation : '" + name + "', at " + i);
                 break;

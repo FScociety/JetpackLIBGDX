@@ -8,6 +8,8 @@ import de.soerensc.jetpackgame.game.world.foreground.saw.SawController;
 import de.soerensc.jetpackgame.game.world.foreground.wall.WallController;
 import de.soerensc.jetpackgame.game.world.foreground.coins.CoinController;
 import de.soerensc.jetpackgame.game.world.foreground.player.PlayerController;
+import de.soerensc.jetpackgame.game.world.foreground.wall.WallShadow;
+import de.soerensc.jetpackgame.screen.Game;
 
 public class InGameWorld extends World {
 
@@ -29,5 +31,9 @@ public class InGameWorld extends World {
         GameObject player = new GameObject();
         player.addComponent(new PlayerController(cc));
         this.add(player);
+
+        GameObject wallShadow = new GameObject();
+        wallShadow.addComponent(new WallShadow());
+        this.add(wallShadow);
     }
 }

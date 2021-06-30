@@ -1,145 +1,145 @@
 
 sawAtlas.png
-size: 128, 256
+size: 512, 128
 format: RGBA8888
 filter: Nearest, Nearest
 repeat: none
 horizontalSaw0
   rotate: false
-  xy: 2, 206
+  xy: 2, 2
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 horizontalSaw1
   rotate: false
-  xy: 2, 172
+  xy: 260, 68
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 horizontalSaw2
   rotate: false
-  xy: 36, 206
+  xy: 36, 2
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 horizontalSaw3
   rotate: false
-  xy: 2, 138
+  xy: 294, 68
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 horizontalSaw4
   rotate: false
-  xy: 36, 172
+  xy: 70, 2
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 horizontalSaw5
   rotate: false
-  xy: 70, 206
+  xy: 328, 68
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 saw0
   rotate: false
-  xy: 2, 104
+  xy: 104, 2
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 saw4
   rotate: false
-  xy: 2, 104
+  xy: 104, 2
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 saw1
   rotate: false
-  xy: 36, 138
+  xy: 362, 68
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 saw5
   rotate: false
-  xy: 36, 138
+  xy: 362, 68
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 saw2
   rotate: false
-  xy: 70, 172
-  size: 32, 32
-  orig: 32, 32
-  offset: 0, 0
-  index: -1
-saw6
-  rotate: false
-  xy: 70, 172
-  size: 32, 32
-  orig: 32, 32
+  xy: 2, 36
+  size: 256, 64
+  orig: 256, 64
   offset: 0, 0
   index: -1
 saw3
   rotate: false
-  xy: 2, 70
+  xy: 138, 2
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 saw7
   rotate: false
-  xy: 2, 70
+  xy: 138, 2
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+saw6
+  rotate: false
+  xy: 396, 68
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 verticalSaw0
   rotate: false
-  xy: 36, 104
+  xy: 172, 2
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 verticalSaw1
   rotate: false
-  xy: 70, 138
+  xy: 430, 68
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 verticalSaw2
   rotate: false
-  xy: 2, 36
+  xy: 206, 2
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 verticalSaw3
   rotate: false
-  xy: 36, 70
+  xy: 464, 68
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 verticalSaw4
   rotate: false
-  xy: 70, 104
+  xy: 260, 34
   size: 32, 32
   orig: 32, 32
   offset: 0, 0
   index: -1
 verticalSaw5
   rotate: false
-  xy: 2, 2
+  xy: 294, 34
   size: 32, 32
   orig: 32, 32
   offset: 0, 0

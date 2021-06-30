@@ -41,11 +41,11 @@ public class CoinController extends MovingPatternControllerBehaviour {
 
 		this.coinDestoryAnimation = new SpriteAnimation(coinAnimations, "coinDestory");
 		this.coinDestoryAnimation.looping = false;
-		this.coinDestoryAnimation.setFramesPerSecond(10);
+		this.coinDestoryAnimation.setFramesPerSecond(20);
 
 		//Patterns
 		this.patternPath = "world/coinPatterns";
-		create(7, CoinData.coinSize);
+		create(6, CoinData.coinSize);
 
 		Gdx.app.log("CoinController", "Coin Patterns were loaded");
 		

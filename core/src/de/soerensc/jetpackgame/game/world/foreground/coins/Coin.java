@@ -40,7 +40,6 @@ public class Coin {
     }
 
     public TextureRegion getImage() {
-        System.out.println(activeAnimation.getCurrentFrame());
         return activeAnimation.getCurrentFrame();
     }
 }
