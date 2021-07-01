@@ -70,6 +70,8 @@ public class PlayerController extends GameBehaviour {
 		float fpsMultiplie = this.gameObject.transform.position.y + sizeY / 2 + PlayerController.borders / 2;
 		fpsMultiplie = PlayerController.borders /  fpsMultiplie;
 
+		this.playerRunningAnimation.setFramesPerSecond(10 * PlayerController.movingSpeed);
+
 		/*if (!this.playerJumpingAnimation.isRunning() && this.playerJumpingAnimation == this.activeAnim && !this.wannaMoveUp) {
 			this.activeAnim = this.playerFallingAnimation;
 			this.playerJumpingAnimation.setFramesPerSecond(fpsMultiplie * 200);
@@ -110,7 +112,7 @@ public class PlayerController extends GameBehaviour {
 				this.gameObject.transform.position.add(0, (this.velocityY * delta));
 		}
 		
-		if (Gdx.input.isKeyPressed(Input.Keys.SPACE) && !this.ceilCollision) {
+		if (Gdx.input.isKeyPressed(Input.Keys.SPACE) && !this.ceilCollision && UiInterface.loggedIn) {
 			if (!this.wannaMoveUp && this.floorCollision) {
 				this.velocityY = -750;
 				this.floorCollision = false;
@@ -145,7 +147,7 @@ public class PlayerController extends GameBehaviour {
 			posY += CoinData.coinSize;
 
 			if (middleSaw.isColliding((int) posY)) {
-				System.out.println("DEAD!!!!!!");
+				//TODO: DEAD!!!
 			}
 		}
 

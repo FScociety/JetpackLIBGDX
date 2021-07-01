@@ -40,6 +40,12 @@ public class GameObject {
         }
     }
 
+    public void renderLater() {
+        for (GameBehaviour bg : this.components) {
+            bg.renderLater();
+        }
+    }
+
     public void dispose() {
         for (GameBehaviour bg : this.components) {
             bg.dispose();

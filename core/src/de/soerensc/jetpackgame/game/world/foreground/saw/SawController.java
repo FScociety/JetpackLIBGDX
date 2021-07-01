@@ -47,7 +47,7 @@ public class SawController extends MovingPatternControllerBehaviour {
         verticalsawAnimation.setFramesPerSecond(100);
 
         this.patternPath = "world/sawPatterns";
-        create(6, SawData.sawSize);
+        create(4, SawData.sawSize);
 
         Gdx.app.log("SawController", "Coin Patterns were loaded");
 

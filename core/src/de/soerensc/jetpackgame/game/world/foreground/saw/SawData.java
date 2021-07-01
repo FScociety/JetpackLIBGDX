@@ -48,7 +48,7 @@ public class SawData extends MovingData {
 
     public boolean isColliding(int start) {
         //TODO: Does not chane the freaking thing
-        System.out.println(start);
+
         return true;
     }
 }

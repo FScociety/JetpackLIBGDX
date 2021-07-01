@@ -18,4 +18,6 @@ public class MovingData {
     public void update() {}
 
     public void render() {}
+
+    public void renderLater() {}
 }

@@ -16,7 +16,7 @@ public class InGameWorld extends World {
     public void create() {
         GameObject background = new GameObject();
         background.addComponent(new ParalaxBackground(3));
-        //this.add(background);
+        this.add(background);
 
         GameObject foreground = new GameObject();
         WallController wc = new WallController();
@@ -32,8 +32,8 @@ public class InGameWorld extends World {
         player.addComponent(new PlayerController(cc));
         this.add(player);
 
-        GameObject wallShadow = new GameObject();
-        wallShadow.addComponent(new WallShadow());
-        this.add(wallShadow);
+        //GameObject wallShadow = new GameObject();
+        //wallShadow.addComponent(new WallShadow(wc));
+        //this.add(wallShadow);
     }
 }

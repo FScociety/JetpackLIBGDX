@@ -74,6 +74,10 @@ public class MovingLayer {
         this.start.render();
     }
 
+    public void renderLater() {
+        this.start.renderLater();
+    }
+
     /*public int getAmoutOverScreen() {
 		System.out.println("Generating Elements");
 		System.out.println("Screen size: " + GameContainer.windowSize);

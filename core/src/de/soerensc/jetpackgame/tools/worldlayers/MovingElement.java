@@ -131,4 +131,14 @@ public class MovingElement {
             this.follower.render();
         }
     }
+
+    public void renderLater() {
+        if (this.visible) {
+            data.renderLater();
+        }
+
+        if (this.follower != null) {
+            this.follower.renderLater();
+        }
+    }
 }

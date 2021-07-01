@@ -1,6 +1,7 @@
 package de.soerensc.jetpackgame.game.world.foreground.wall;
 
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
 import de.soerensc.engine.ecs.GameBehaviour;
 import de.soerensc.jetpackgame.game.world.foreground.coins.CoinData;
@@ -10,21 +11,21 @@ public class WallController extends GameBehaviour {
 
     public MovingLayer wallList;
 
-    private Texture wallTexture;
+    public TextureAtlas wallAtlas;
     private Vector2 imageSize;
 
     public WallController() {
-        wallTexture = new Texture("world/wall/WallDefault.png");
-        imageSize = new Vector2(wallTexture.getWidth(), wallTexture.getHeight());
+        wallAtlas = new TextureAtlas("world/wall/wallAtlas.atlas");
+        imageSize = new Vector2(wallAtlas.getRegions().get(0).getRegionWidth(), wallAtlas.getRegions().get(0).getRegionHeight());
     }
 
     @Override
     public void start() {
-        WallData defaultWall = new WallData(this.spriteBatch, wallTexture);
+        WallData defaultWall = new WallData(this.spriteBatch, this.wallAtlas);
 
         wallList = new MovingLayer(defaultWall, new Vector2(imageSize.x * 10, imageSize.y * 10), -1000, 0.9f);
         wallList.name = "WallList";
-        wallList.addInstant(40);
+        wallList.addInstant(5);
         defaultWall.parent = wallList.start;
     }
 
@@ -36,5 +37,10 @@ public class WallController extends GameBehaviour {
     @Override
     public void render() {
         wallList.render();
+    }
+
+    @Override
+    public void renderLater() {
+        wallList.renderLater();
     }
 }

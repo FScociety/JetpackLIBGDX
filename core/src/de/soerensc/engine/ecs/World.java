@@ -46,9 +46,19 @@ public class World {
 
         debugFont.draw(spriteBatch, "RenderCalls: " + this.renderCalls +"", 0, 0);
 
-        spriteBatch.end();
 
         this.renderCalls = spriteBatch.renderCalls;
+
+        this.renderLater();
+    }
+
+    private final void renderLater() {
+        for (GameObject obj : this.gameObjectsInWorld) {
+            obj.renderLater();
+        }
+
+
+        spriteBatch.end();
     }
 
     public void dispose() {

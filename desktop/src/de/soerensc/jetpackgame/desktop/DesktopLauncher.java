@@ -21,11 +21,13 @@ public class DesktopLauncher {
 
 		//TexturePacker.process(settings, "world/textures/backgrounds/dune", "world/textures/backgrounds/dune", "dune");
 
-		TexturePacker.process(settings, "world/textures/obstangles/saw", "world/textures/obstangles/saw", "sawAtlas");
+		//TexturePacker.process(settings, "world/textures/obstangles/saw", "world/textures/obstangles/saw", "sawAtlas");
 
 		//TexturePacker.process(settings, "world/textures/coins", "world/textures/coins", "coinAtlas");
 
-		TexturePacker.process(settings, "world/textures/player", "world/textures/player", "playerAnimAtlas");
+		//TexturePacker.process(settings, "world/textures/player", "world/textures/player", "playerAnimAtlas");
+
+		//TexturePacker.process(settings, "world/wall", "world/wall", "wallAtlas");
 
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 		config.vSyncEnabled = true;
@@ -34,6 +36,7 @@ public class DesktopLauncher {
 		config.useGL30 = false;
 		config.width = 960;
 		config.height = 640;
+		config.fullscreen = true;
 		Boot game = new Boot();
 		game.setSplashWorker(new DesktopSplashWorker());
 		LwjglApplication application = new LwjglApplication(game, config);

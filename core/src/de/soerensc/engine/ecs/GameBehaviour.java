@@ -10,5 +10,6 @@ public abstract class GameBehaviour {
     public void start() {}
     public void update(float delta) {}
     public void render() {}
+    public void renderLater() {}
     public void dispose() {}
 }
