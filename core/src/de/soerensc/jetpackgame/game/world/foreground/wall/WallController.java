@@ -1,10 +1,8 @@
 package de.soerensc.jetpackgame.game.world.foreground.wall;
 
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
-import de.soerensc.engine.ecs.GameBehaviour;
-import de.soerensc.jetpackgame.game.world.foreground.coins.CoinData;
+import de.soerensc.jetpackgame.tools.engine.ecs.GameBehaviour;
 import de.soerensc.jetpackgame.tools.worldlayers.MovingLayer;
 
 public class WallController extends GameBehaviour {

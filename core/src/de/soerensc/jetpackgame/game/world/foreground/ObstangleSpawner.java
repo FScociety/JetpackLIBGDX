@@ -1,6 +1,6 @@
 package de.soerensc.jetpackgame.game.world.foreground;
 
-import de.soerensc.engine.ecs.GameBehaviour;
+import de.soerensc.jetpackgame.tools.engine.ecs.GameBehaviour;
 import de.soerensc.jetpackgame.game.world.foreground.coins.CoinController;
 import de.soerensc.jetpackgame.game.world.foreground.saw.SawController;
 import de.soerensc.jetpackgame.tools.worldlayers.MovingPattern;

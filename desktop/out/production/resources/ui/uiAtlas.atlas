@@ -1,0 +1,69 @@
+
+uiAtlas.png
+size: 256, 128
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+button_default
+  rotate: false
+  xy: 180, 96
+  size: 30, 30
+  orig: 30, 30
+  offset: 0, 0
+  index: -1
+button_hover
+  rotate: false
+  xy: 36, 6
+  size: 30, 30
+  orig: 30, 30
+  offset: 0, 0
+  index: -1
+button_press
+  rotate: false
+  xy: 180, 64
+  size: 30, 30
+  orig: 30, 30
+  offset: 0, 0
+  index: -1
+canvas
+  rotate: false
+  xy: 2, 4
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
+cursor
+  rotate: false
+  xy: 68, 2
+  size: 4, 16
+  orig: 4, 16
+  offset: 0, 0
+  index: -1
+selection
+  rotate: false
+  xy: 180, 58
+  size: 4, 4
+  orig: 4, 4
+  offset: 0, 0
+  index: -1
+textfield_default
+  rotate: false
+  xy: 212, 110
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+textfield_selected
+  rotate: false
+  xy: 68, 20
+  size: 16, 16
+  orig: 16, 16
+  offset: 0, 0
+  index: -1
+title
+  rotate: false
+  xy: 2, 38
+  size: 176, 88
+  orig: 176, 88
+  offset: 0, 0
+  index: -1

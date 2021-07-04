@@ -1,6 +1,6 @@
 package de.soerensc.jetpackgame.tools.worldlayers;
 
-import de.soerensc.engine.ecs.GameBehaviour;
+import de.soerensc.jetpackgame.tools.engine.ecs.GameBehaviour;
 
 public abstract class MovingPatternControllerBehaviour extends GameBehaviour {
 

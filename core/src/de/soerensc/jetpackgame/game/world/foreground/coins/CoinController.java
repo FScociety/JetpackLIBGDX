@@ -1,13 +1,9 @@
 package de.soerensc.jetpackgame.game.world.foreground.coins;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
-import de.soerensc.engine.ecs.GameBehaviour;
 import de.soerensc.jetpackgame.game.world.foreground.ObstangleSpawner;
-import de.soerensc.jetpackgame.game.world.foreground.saw.SawController;
-import de.soerensc.jetpackgame.game.world.foreground.wall.WallController;
 import de.soerensc.jetpackgame.tools.animation.SpriteAnimation;
 import de.soerensc.jetpackgame.tools.worldlayers.MovingLayer;
 import de.soerensc.jetpackgame.tools.worldlayers.MovingPattern;
@@ -103,5 +99,10 @@ public class CoinController extends MovingPatternControllerBehaviour {
 	
 	public void render() {
 		coinList.render();
+	}
+
+	@Override
+	public void reset() {
+		this.coinList.start.reset();
 	}
 }

@@ -1,6 +1,10 @@
 package de.soerensc.jetpackgame.game.world.foreground.coins;
 
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import de.soerensc.jetpackgame.game.Assets;
+import de.soerensc.jetpackgame.game.ui.UiInterface;
+import de.soerensc.jetpackgame.game.world.foreground.player.PlayerController;
 import de.soerensc.jetpackgame.tools.animation.SpriteAnimation;
 import de.soerensc.jetpackgame.tools.worldlayers.MovingData;
 
@@ -15,9 +19,13 @@ public class CoinData extends MovingData {
 
 	private SpriteAnimation destroyAnimation;
 	private SpriteAnimation rollingAnimation;
+
+	private Sound coinSound;
 	
 	public CoinData(SpriteBatch spriteBatch, SpriteAnimation rollingAnimation, SpriteAnimation destroyAnimation) {
 		super(spriteBatch);
+
+		coinSound = Assets.manager.<Sound>get(Assets.coinSound);
 
 		/*for (int i = 0; i < this.coins.length; i++) {
 			this.coinsAnimations[i] = rollingAnimation.getCopy();
@@ -82,19 +90,29 @@ public class CoinData extends MovingData {
 			startingY = coins.length-3;
 		}
 
+		int lol = 0;
+
 		for (int i = 0; i < 3; i++) {
-			/*SpriteAnimation destroyAnimationCopy = destroyAnimation.getCopy();
-			coins[i + startingY] = destroyAnimationCopy;
-			destroyAnimationCopy.play();
-			if (!destroyAnimationCopy.isLinked()) {
-				destroyAnimation.link(destroyAnimationCopy);
-			}*/
-			coins[i + startingY].setActive(0);
 
 			if (coins[i + startingY].isActive()) {
-				//UiInterface.coins++;
-				//UiInterface.currentCoins.setText("Coins: " + UiInterface.coins);
+				PlayerController.coins++;
+				lol ++;
+				UiInterface.coins.setText("Coins: " + PlayerController.coins);
 			}
+
+			coins[i + startingY].setActive(0);
+		}
+
+		if (lol > 0) {
+
+			coinSound.play(10);
+		}
+	}
+
+	@Override
+	public void reset() {
+		for (int i = 0; i < coins.length; i++) {
+			coins[i].setActive(0);
 		}
 	}
 }	

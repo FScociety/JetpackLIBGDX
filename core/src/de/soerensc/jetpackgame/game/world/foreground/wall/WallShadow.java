@@ -1,13 +1,9 @@
 package de.soerensc.jetpackgame.game.world.foreground.wall;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import de.soerensc.engine.ecs.GameBehaviour;
+import de.soerensc.jetpackgame.tools.engine.ecs.GameBehaviour;
 import de.soerensc.jetpackgame.screen.Game;
-
-import java.awt.*;
 
 public class WallShadow extends GameBehaviour {
 

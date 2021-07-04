@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import de.soerensc.jetpackgame.game.world.background.ParalaxBackground;
 import de.soerensc.jetpackgame.game.world.foreground.coins.CoinData;
 import de.soerensc.jetpackgame.tools.worldlayers.MovingData;
 
@@ -14,10 +15,10 @@ public class WallData extends MovingData {
     TextureAtlas wall;
     TextureRegion activeWall;
     public static TextureRegion staticActiveWall;
-    public static TextureRegion filledWall, wireWall, shadowWall;
+    public static TextureRegion filledWall, wireWall, shadowWallFilled, shadowWallWire;
 
-    public static final int bounds = 5;
-    public static int i = bounds;
+    public static float bounds = 5;
+    public static int i = (int)bounds;
     public static boolean wallWire = false;
 
     public WallData(SpriteBatch spriteBatch, TextureAtlas wall) {
@@ -27,7 +28,8 @@ public class WallData extends MovingData {
         if (!WallData.started) {
             WallData.filledWall = wall.findRegion("WallDefault");
             WallData.wireWall = wall.findRegion("WallWire");
-            WallData.shadowWall = wall.findRegion("WallShadow");
+            WallData.shadowWallFilled = wall.findRegion("WallShadowFilled");
+            WallData.shadowWallWire = wall.findRegion("WallShadowWire");
 
             WallData.staticActiveWall = WallData.filledWall;
         }
@@ -46,10 +48,13 @@ public class WallData extends MovingData {
     public void generateNew() {
         WallData.i --;
         if (WallData.i <= 0) {
-            WallData.i = WallData.bounds;
+            WallData.i = (int)WallData.bounds;
             wallWire = !wallWire;
 
-            System.out.println("Changed");
+            //TODO: Balance
+            bounds *= 1.1f;
+
+            ParalaxBackground.background.changed();
 
             if (wallWire) {
                 WallData.staticActiveWall = WallData.wireWall;
@@ -68,7 +73,8 @@ public class WallData extends MovingData {
 
     @Override
     public void renderLater() {
-        System.out.println("Rendered Later");
-        this.spriteBatch.draw(WallData.shadowWall, (int)this.parent.position, (int)-this.parent.parent.elementBounds.y/2 , this.parent.parent.elementBounds.x, this.parent.parent.elementBounds.y);
+        TextureRegion active = this.activeWall == WallData.filledWall ? WallData.shadowWallFilled : WallData.shadowWallWire;
+
+        this.spriteBatch.draw(active, (int)this.parent.position, (int)-this.parent.parent.elementBounds.y/2 , this.parent.parent.elementBounds.x, this.parent.parent.elementBounds.y);
     }
 }

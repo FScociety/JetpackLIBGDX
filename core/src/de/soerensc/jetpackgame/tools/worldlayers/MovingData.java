@@ -20,4 +20,6 @@ public class MovingData {
     public void render() {}
 
     public void renderLater() {}
+
+    public void reset() {}
 }

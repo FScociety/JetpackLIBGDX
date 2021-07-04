@@ -31,6 +31,8 @@ public class SpriteAnimation {
 
     public SpriteAnimation(TextureAtlas textureAtlas, String name) {
 
+        Gdx.app.debug("SpriteAnimation", "Searching frames for " + name);
+
         Array<TextureRegion> regions = new Array<TextureRegion>();
 
         int i = 0;
@@ -47,6 +49,8 @@ public class SpriteAnimation {
                 Gdx.app.log("SpriteAnimation", "Found end for SpriteAnimation : '" + name + "', at " + i);
                 break;
             }
+
+            Gdx.app.debug(name, "Found frame at: " + i);
 
             i++;
         }
@@ -88,6 +92,12 @@ public class SpriteAnimation {
 
     public void play() {
         this.index = 0;
+        this.running = true;
+        this.currentFrame = this.animationPart[0];
+    }
+
+    public void play(int i) {
+        this.index = i;
         this.running = true;
         this.currentFrame = this.animationPart[0];
     }

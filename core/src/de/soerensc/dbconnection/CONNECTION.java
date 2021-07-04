@@ -1,5 +1,7 @@
 package de.soerensc.dbconnection;
 
+import de.soerensc.jetpackgame.game.world.foreground.coins.CoinData;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -12,6 +14,8 @@ public class CONNECTION {
     private static String db_password;
     private static String table;
     private static boolean logged_in;
+
+    public static String username;
 
     public CONNECTION() {
         db_username = "d036b6b5";
@@ -101,6 +105,7 @@ public class CONNECTION {
             while (rs.next()) {
                 if(login_password.equals(rs.getString(3))) {
                     System.out.println("You're logged in!");
+                    CONNECTION.username = login_username;
                     logged_in = true;
                     rs.close();
                     stmt.close();
@@ -118,7 +123,7 @@ public class CONNECTION {
         }
         return false;
     }
-    public void new_highscore(String username, int new_highscore) throws SQLException {
+    public void new_highscore(int new_highscore) throws SQLException {
         if(logged_in) {
             if(!check_for_acc(username)) {
                 String query = "UPDATE accounts SET user_highscore='" + new_highscore + "' WHERE user_name='" + username + "'";
@@ -136,7 +141,7 @@ public class CONNECTION {
             System.out.println("You are not logged in!");
         }
     }
-    public void update_coins(String username, int coins) throws SQLException {
+    public void update_coins(int coins) throws SQLException {
         if(logged_in) {
             if(!check_for_acc(username)) {
                 String query = "UPDATE accounts SET user_coins='" + coins + "' WHERE user_name='" + username + "'";
@@ -156,5 +161,40 @@ public class CONNECTION {
     }
     public boolean get_logged_in() {
         return logged_in;
+    }
+
+    public int get_highscore() throws SQLException {
+        if (logged_in) {
+            String query = "SELECT user_highscore FROM " + table + " WHERE user_name='" + username + "'";
+            Statement stmt = getConnection().createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+
+            while (rs.next()) {
+                return rs.getInt(1);
+            }
+
+            rs.close();
+            stmt.close();
+        } else {
+            System.out.println("You are not logged in!");
+        }
+        return 0;
+    }
+    public int get_coins() throws SQLException {
+        if (logged_in) {
+            String query = "SELECT user_coins FROM " + table + " WHERE user_name='" + username + "'";
+            Statement stmt = getConnection().createStatement();
+            ResultSet rs = stmt.executeQuery(query);
+
+            while (rs.next()) {
+                return rs.getInt(1);
+            }
+
+            rs.close();
+            stmt.close();
+        } else {
+            System.out.println("You are not logged in!");
+        }
+        return 0;
     }
 }

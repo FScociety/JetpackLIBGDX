@@ -1,0 +1,69 @@
+
+backgrounds.png
+size: 1024, 256
+format: RGBA8888
+filter: Nearest, Nearest
+repeat: none
+city0
+  rotate: false
+  xy: 2, 134
+  size: 256, 64
+  orig: 256, 64
+  offset: 0, 0
+  index: -1
+city1
+  rotate: false
+  xy: 2, 68
+  size: 256, 64
+  orig: 256, 64
+  offset: 0, 0
+  index: -1
+city2
+  rotate: false
+  xy: 260, 134
+  size: 256, 64
+  orig: 256, 64
+  offset: 0, 0
+  index: -1
+dune0
+  rotate: false
+  xy: 2, 2
+  size: 256, 64
+  orig: 256, 64
+  offset: 0, 0
+  index: -1
+dune1
+  rotate: false
+  xy: 260, 68
+  size: 256, 64
+  orig: 256, 64
+  offset: 0, 0
+  index: -1
+dune2
+  rotate: false
+  xy: 518, 134
+  size: 256, 64
+  orig: 256, 64
+  offset: 0, 0
+  index: -1
+mountain0
+  rotate: false
+  xy: 260, 2
+  size: 256, 64
+  orig: 256, 64
+  offset: 0, 0
+  index: -1
+mountain1
+  rotate: false
+  xy: 518, 68
+  size: 256, 64
+  orig: 256, 64
+  offset: 0, 0
+  index: -1
+mountain2
+  rotate: false
+  xy: 518, 2
+  size: 256, 64
+  orig: 256, 64
+  offset: 0, 0
+  index: -1

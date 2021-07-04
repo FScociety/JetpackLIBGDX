@@ -141,4 +141,12 @@ public class MovingElement {
             this.follower.renderLater();
         }
     }
+
+    public void reset() {
+        this.data.reset();
+
+        if (this.follower != null) {
+            this.follower.reset();
+        }
+    }
 }

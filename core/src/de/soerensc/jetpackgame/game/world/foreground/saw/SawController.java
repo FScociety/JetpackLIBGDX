@@ -1,16 +1,11 @@
 package de.soerensc.jetpackgame.game.world.foreground.saw;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
-import de.soerensc.engine.ecs.GameBehaviour;
 import de.soerensc.jetpackgame.game.world.foreground.ObstangleSpawner;
-import de.soerensc.jetpackgame.game.world.foreground.coins.CoinController;
-import de.soerensc.jetpackgame.game.world.foreground.coins.CoinData;
 import de.soerensc.jetpackgame.tools.animation.SpriteAnimation;
-import de.soerensc.jetpackgame.tools.worldlayers.MovingElement;
 import de.soerensc.jetpackgame.tools.worldlayers.MovingLayer;
 import de.soerensc.jetpackgame.tools.worldlayers.MovingPattern;
 import de.soerensc.jetpackgame.tools.worldlayers.MovingPatternControllerBehaviour;
@@ -21,6 +16,8 @@ public class SawController extends MovingPatternControllerBehaviour {
 
     public MovingLayer sawList;
     private TextureAtlas sawAtlas;
+
+    public int sawSize = 100;
 
     public static SpriteAnimation sawAnimation, horizontalSawAnimation, verticalsawAnimation;
 
@@ -39,7 +36,7 @@ public class SawController extends MovingPatternControllerBehaviour {
         sawAtlas = new TextureAtlas("world/textures/obstangles/saw/sawAtlas.atlas");
 
         //Patterns
-        sawAnimation = new SpriteAnimation(sawAtlas, "saw");
+        sawAnimation = new SpriteAnimation(sawAtlas, "sawRound");
         sawAnimation.setFramesPerSecond(100);
         horizontalSawAnimation = new SpriteAnimation(sawAtlas, "horizontalSaw");
         horizontalSawAnimation.setFramesPerSecond(100);
@@ -57,7 +54,7 @@ public class SawController extends MovingPatternControllerBehaviour {
     @Override
     public void start() {
         SawData defaultSaw = new SawData(this.spriteBatch);
-        sawList = new MovingLayer(defaultSaw, new Vector2(100, 100), -1000, 1f);
+        sawList = new MovingLayer(defaultSaw, new Vector2(sawSize, sawSize), -1000, 1f);
         sawList.addInstant(22);
         defaultSaw.parent = sawList.start;
 
@@ -78,6 +75,11 @@ public class SawController extends MovingPatternControllerBehaviour {
     @Override
     public void render() {
         sawList.render();
+    }
+
+    @Override
+    public void reset() {
+        this.sawList.start.reset();
     }
 
     @Override
