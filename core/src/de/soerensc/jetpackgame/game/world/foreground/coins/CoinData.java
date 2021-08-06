@@ -21,6 +21,8 @@ public class CoinData extends MovingData {
 	private SpriteAnimation rollingAnimation;
 
 	private Sound coinSound;
+
+	private boolean collisionAsking;
 	
 	public CoinData(SpriteBatch spriteBatch, SpriteAnimation rollingAnimation, SpriteAnimation destroyAnimation) {
 		super(spriteBatch);
@@ -38,7 +40,7 @@ public class CoinData extends MovingData {
 		}*/
 
 		for (int i = 0; i < this.coins.length; i++) {
-			this.coins[i] = new Coin(i, rollingAnimation, destroyAnimation);
+			this.coins[i] = new Coin(0, rollingAnimation, destroyAnimation);
 		}
 
 		this.generateNew();
@@ -67,7 +69,7 @@ public class CoinData extends MovingData {
 	public void render() {
 		if (this.coins != null) {
 			for (int i = 0; i < coins.length; i++) {
-				if (coins[i].isActive()) {
+				if (coins[i].isVisible()) {
 					this.spriteBatch.draw(this.coins[i].getImage(), this.parent.position, (-i + ((float) this.coins.length) / 2) * this.parent.parent.elementBounds.y, this.parent.parent.elementBounds.x, this.parent.parent.elementBounds.y);
 				}
 			}
@@ -94,7 +96,7 @@ public class CoinData extends MovingData {
 
 		for (int i = 0; i < 3; i++) {
 
-			if (coins[i + startingY].isActive()) {
+			if (coins[i + startingY].isVisible()) {
 				PlayerController.coins++;
 				lol ++;
 				UiInterface.coins.setText("Coins: " + PlayerController.coins);

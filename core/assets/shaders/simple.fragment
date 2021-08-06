@@ -1,0 +1,41 @@
+#ifdef GL_ES
+	#define PRECISION mediump
+	precision PRECISION float;
+#else
+	#define PRECISION
+#endif
+
+uniform PRECISION sampler2D u_texture0;
+uniform float intensity;
+uniform float saturation;
+
+varying vec2 v_texCoords;
+
+// The constants 0.3, 0.59, and 0.11 are chosen because the
+// human eye is more sensitive to green light, and less to blue.
+const vec3 GRAYSCALE = vec3(0.3, 0.59, 0.11);
+
+// 0 = totally desaturated
+// 1 = saturation unchanged
+// higher = increase saturation
+//const float BaseSat = 1;
+//const float BloomSat = 1;
+
+vec3 adjustSaturation(vec3 color, float saturation)
+{
+	vec3 grey = vec3(dot(color, GRAYSCALE));
+	//vec3 grey = vec3((color.r+color.g+color.b)*0.333);
+	return mix(grey, color, saturation);
+}
+
+void main()
+{
+	// lookup inputs
+	vec4 src = texture2D(u_texture0, v_texCoords) * intensity;
+
+	// adjust color saturation and intensity
+	src.rgb = adjustSaturation(src.rgb,saturation);
+
+	// combine
+	gl_FragColor = src;
+}

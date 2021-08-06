@@ -1,223 +1,412 @@
 
 playerAnimAtlas.png
-size: 2048, 256
+size: 2048, 1024
 format: RGBA8888
 filter: Nearest, Nearest
 repeat: none
-jump001
+EntityShadow
   rotate: false
   xy: 2, 2
-  size: 64, 128
-  orig: 64, 128
+  size: 64, 32
+  orig: 64, 32
   offset: 0, 0
   index: -1
-jump002
+fall0
   rotate: false
-  xy: 68, 2
-  size: 64, 128
-  orig: 64, 128
+  xy: 2, 816
+  size: 128, 128
+  orig: 128, 128
   offset: 0, 0
   index: -1
-jump003
+fall1
   rotate: false
-  xy: 134, 2
-  size: 64, 128
-  orig: 64, 128
+  xy: 2, 686
+  size: 128, 128
+  orig: 128, 128
   offset: 0, 0
   index: -1
-jump004
+fall2
   rotate: false
-  xy: 200, 2
-  size: 64, 128
-  orig: 64, 128
+  xy: 132, 816
+  size: 128, 128
+  orig: 128, 128
   offset: 0, 0
   index: -1
-jump005
+falling0
   rotate: false
-  xy: 266, 2
-  size: 64, 128
-  orig: 64, 128
+  xy: 2, 556
+  size: 128, 128
+  orig: 128, 128
   offset: 0, 0
   index: -1
-land001
+land0
   rotate: false
-  xy: 332, 2
-  size: 64, 128
-  orig: 64, 128
+  xy: 2, 556
+  size: 128, 128
+  orig: 128, 128
   offset: 0, 0
   index: -1
-land002
+falling1
   rotate: false
-  xy: 398, 2
-  size: 64, 128
-  orig: 64, 128
+  xy: 132, 686
+  size: 128, 128
+  orig: 128, 128
   offset: 0, 0
   index: -1
-land003
+falling2
   rotate: false
-  xy: 464, 2
-  size: 64, 128
-  orig: 64, 128
+  xy: 262, 816
+  size: 128, 128
+  orig: 128, 128
   offset: 0, 0
   index: -1
-land004
+falling3
   rotate: false
-  xy: 530, 2
-  size: 64, 128
-  orig: 64, 128
+  xy: 2, 426
+  size: 128, 128
+  orig: 128, 128
   offset: 0, 0
   index: -1
-land005
+falling4
   rotate: false
-  xy: 596, 2
-  size: 64, 128
-  orig: 64, 128
+  xy: 132, 556
+  size: 128, 128
+  orig: 128, 128
   offset: 0, 0
   index: -1
-land006
+jump0
   rotate: false
-  xy: 662, 2
-  size: 64, 128
-  orig: 64, 128
+  xy: 262, 686
+  size: 128, 128
+  orig: 128, 128
   offset: 0, 0
   index: -1
-land007
+jump1
   rotate: false
-  xy: 728, 2
-  size: 64, 128
-  orig: 64, 128
+  xy: 392, 816
+  size: 128, 128
+  orig: 128, 128
   offset: 0, 0
   index: -1
-land008
+jump2
   rotate: false
-  xy: 794, 2
-  size: 64, 128
-  orig: 64, 128
+  xy: 2, 296
+  size: 128, 128
+  orig: 128, 128
   offset: 0, 0
   index: -1
-land009
+jump3
   rotate: false
-  xy: 860, 2
-  size: 64, 128
-  orig: 64, 128
+  xy: 132, 426
+  size: 128, 128
+  orig: 128, 128
   offset: 0, 0
   index: -1
-land010
+jump4
   rotate: false
-  xy: 926, 2
-  size: 64, 128
-  orig: 64, 128
+  xy: 262, 556
+  size: 128, 128
+  orig: 128, 128
   offset: 0, 0
   index: -1
-runningIdle0000
+jump5
   rotate: false
-  xy: 992, 2
-  size: 64, 128
-  orig: 64, 128
+  xy: 392, 686
+  size: 128, 128
+  orig: 128, 128
   offset: 0, 0
   index: -1
-runningIdle0001
+jumping0
   rotate: false
-  xy: 992, 2
-  size: 64, 128
-  orig: 64, 128
+  xy: 392, 686
+  size: 128, 128
+  orig: 128, 128
   offset: 0, 0
   index: -1
-runningIdle0002
+jump6
   rotate: false
-  xy: 1058, 2
-  size: 64, 128
-  orig: 64, 128
+  xy: 522, 816
+  size: 128, 128
+  orig: 128, 128
   offset: 0, 0
   index: -1
-runningIdle0003
+jump7
   rotate: false
-  xy: 1124, 2
-  size: 64, 128
-  orig: 64, 128
+  xy: 2, 166
+  size: 128, 128
+  orig: 128, 128
   offset: 0, 0
   index: -1
-runningIdle0004
+jump8
   rotate: false
-  xy: 1190, 2
-  size: 64, 128
-  orig: 64, 128
+  xy: 132, 296
+  size: 128, 128
+  orig: 128, 128
   offset: 0, 0
   index: -1
-runningIdle0005
+jump9
   rotate: false
-  xy: 1256, 2
-  size: 64, 128
-  orig: 64, 128
+  xy: 132, 296
+  size: 128, 128
+  orig: 128, 128
   offset: 0, 0
   index: -1
-runningIdle0006
+jumping1
   rotate: false
-  xy: 1322, 2
-  size: 64, 128
-  orig: 64, 128
+  xy: 132, 296
+  size: 128, 128
+  orig: 128, 128
   offset: 0, 0
   index: -1
-runningIdle0007
+land1
   rotate: false
-  xy: 1388, 2
-  size: 64, 128
-  orig: 64, 128
+  xy: 262, 426
+  size: 128, 128
+  orig: 128, 128
   offset: 0, 0
   index: -1
-runningIdle0008
+land10
   rotate: false
-  xy: 1454, 2
-  size: 64, 128
-  orig: 64, 128
+  xy: 652, 686
+  size: 128, 128
+  orig: 128, 128
   offset: 0, 0
   index: -1
-runningIdle0009
+land11
   rotate: false
-  xy: 1520, 2
-  size: 64, 128
-  orig: 64, 128
+  xy: 782, 816
+  size: 128, 128
+  orig: 128, 128
   offset: 0, 0
   index: -1
-runningIdle0010
+land12
   rotate: false
-  xy: 1586, 2
-  size: 64, 128
-  orig: 64, 128
+  xy: 132, 36
+  size: 128, 128
+  orig: 128, 128
   offset: 0, 0
   index: -1
-runningIdle0011
+land13
   rotate: false
-  xy: 1652, 2
-  size: 64, 128
-  orig: 64, 128
+  xy: 262, 166
+  size: 128, 128
+  orig: 128, 128
   offset: 0, 0
   index: -1
-runningIdle0012
+land14
   rotate: false
-  xy: 1718, 2
-  size: 64, 128
-  orig: 64, 128
+  xy: 392, 296
+  size: 128, 128
+  orig: 128, 128
   offset: 0, 0
   index: -1
-runningIdle0013
+land15
   rotate: false
-  xy: 1784, 2
-  size: 64, 128
-  orig: 64, 128
+  xy: 522, 426
+  size: 128, 128
+  orig: 128, 128
   offset: 0, 0
   index: -1
-runningIdle0014
+land16
   rotate: false
-  xy: 1850, 2
-  size: 64, 128
-  orig: 64, 128
+  xy: 652, 556
+  size: 128, 128
+  orig: 128, 128
   offset: 0, 0
   index: -1
-runningIdle0015
+land17
   rotate: false
-  xy: 1916, 2
-  size: 64, 128
-  orig: 64, 128
+  xy: 782, 686
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+land18
+  rotate: false
+  xy: 912, 816
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+land19
+  rotate: false
+  xy: 262, 36
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+land2
+  rotate: false
+  xy: 392, 556
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+land20
+  rotate: false
+  xy: 392, 166
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+land21
+  rotate: false
+  xy: 522, 296
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+land3
+  rotate: false
+  xy: 522, 686
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+land4
+  rotate: false
+  xy: 652, 816
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+land5
+  rotate: false
+  xy: 2, 36
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+land6
+  rotate: false
+  xy: 132, 166
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+land7
+  rotate: false
+  xy: 262, 296
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+land8
+  rotate: false
+  xy: 392, 426
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+land9
+  rotate: false
+  xy: 522, 556
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+running0
+  rotate: false
+  xy: 652, 426
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+running1
+  rotate: false
+  xy: 782, 556
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+running10
+  rotate: false
+  xy: 1172, 816
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+running11
+  rotate: false
+  xy: 522, 36
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+running12
+  rotate: false
+  xy: 652, 166
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+running13
+  rotate: false
+  xy: 782, 296
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+running14
+  rotate: false
+  xy: 912, 426
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+running2
+  rotate: false
+  xy: 912, 686
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+running3
+  rotate: false
+  xy: 1042, 816
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+running4
+  rotate: false
+  xy: 392, 36
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+running5
+  rotate: false
+  xy: 522, 166
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+running6
+  rotate: false
+  xy: 652, 296
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+running7
+  rotate: false
+  xy: 782, 426
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+running8
+  rotate: false
+  xy: 912, 556
+  size: 128, 128
+  orig: 128, 128
+  offset: 0, 0
+  index: -1
+running9
+  rotate: false
+  xy: 1042, 686
+  size: 128, 128
+  orig: 128, 128
   offset: 0, 0
   index: -1

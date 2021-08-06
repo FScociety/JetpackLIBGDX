@@ -62,10 +62,6 @@ public class UiInterface {
     }
 
     public void create() {
-
-        //uiStage.setDebugAll(true);
-
-
         userInfoTable = new Table();
         userInfoTable.setFillParent(true);
         userInfoTable.right().top();

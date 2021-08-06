@@ -19,6 +19,8 @@ import java.awt.*;
 
 public class Game extends ScreenAdapter {
 
+    public static Game game;
+
     public static float delta;
 
     private static boolean started = false;
@@ -34,6 +36,9 @@ public class Game extends ScreenAdapter {
     public static Color color;
 
     public Game() {
+        if (Game.game == null) {
+            Game.game = this;
+        }
 
         Gdx.app.setLogLevel(Application.LOG_DEBUG);
 
@@ -57,11 +62,11 @@ public class Game extends ScreenAdapter {
 
         world.start();
 
-
         Game.started = true;
     }
 
     public void update(float delta) {
+
         if (!Game.started || !Game.canUpdate) { return; }
 
         World.spriteBatch.setProjectionMatrix(camera.combined);
@@ -114,6 +119,7 @@ public class Game extends ScreenAdapter {
                 " | DRAWCALLS: " + profiler.getDrawCalls() +
                 " | TEXTUREBINDINGS: " + profiler.getTextureBindings() +
                 " | VERTICIES: " + profiler.getVertexCount().total);
+
 
         ui.render();
 

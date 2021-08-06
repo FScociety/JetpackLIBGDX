@@ -65,6 +65,8 @@ public class SawData extends MovingData {
         //System.out.println("Given : " + start);
         //CLIP to min=1, to prevent errors later
         start = start <= 0 ? 1 : start;
+        //CLIP to max=6, to prevent errors later
+        start = start >= 6 ? 6 : start;
 
         int collision = 0;
 

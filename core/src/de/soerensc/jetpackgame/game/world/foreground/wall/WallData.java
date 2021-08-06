@@ -15,7 +15,7 @@ public class WallData extends MovingData {
     TextureAtlas wall;
     TextureRegion activeWall;
     public static TextureRegion staticActiveWall;
-    public static TextureRegion filledWall, wireWall, shadowWallFilled, shadowWallWire;
+    public static TextureRegion filledWall, wireWall, shadowWallFilled;
 
     public static float bounds = 5;
     public static int i = (int)bounds;
@@ -29,7 +29,6 @@ public class WallData extends MovingData {
             WallData.filledWall = wall.findRegion("WallDefault");
             WallData.wireWall = wall.findRegion("WallWire");
             WallData.shadowWallFilled = wall.findRegion("WallShadowFilled");
-            WallData.shadowWallWire = wall.findRegion("WallShadowWire");
 
             WallData.staticActiveWall = WallData.filledWall;
         }
@@ -73,8 +72,10 @@ public class WallData extends MovingData {
 
     @Override
     public void renderLater() {
-        TextureRegion active = this.activeWall == WallData.filledWall ? WallData.shadowWallFilled : WallData.shadowWallWire;
-
-        this.spriteBatch.draw(active, (int)this.parent.position, (int)-this.parent.parent.elementBounds.y/2 , this.parent.parent.elementBounds.x, this.parent.parent.elementBounds.y);
+        //Rounding is not the best way
+        //And it kinda feels unsmooth
+        //But maybe this is the best solution
+        //TODO:
+        this.spriteBatch.draw(WallData.shadowWallFilled, (float)Math.floor(this.parent.position), (int)-this.parent.parent.elementBounds.y/2 , this.parent.parent.elementBounds.x, this.parent.parent.elementBounds.y);
     }
 }

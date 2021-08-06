@@ -52,7 +52,7 @@ public class CONNECTION {
     }
     public boolean create_acc(String new_username, String new_password) throws SQLException {
         if(check_for_acc(new_username)) {
-            String query = "INSERT INTO " + table + "(user_name, user_password, user_level, user_coins, user_highscore) VALUES ('" + new_username + "','" + new_password + "',32,324324,546534)";
+            String query = "INSERT INTO " + table + "(user_name, user_password, user_level, user_coins, user_highscore) VALUES ('" + new_username + "','" + new_password + "',0, 0, 0)";
             Statement stmt = getConnection().createStatement();
             boolean rs = stmt.execute(query);
 
@@ -97,6 +97,7 @@ public class CONNECTION {
             System.out.println("You are not logged in!");
         }
     }
+
     public boolean login(String login_username, String login_password) throws SQLException {
         if(!check_for_acc(login_username)) {
             String query = "SELECT * FROM " + table + " WHERE user_name='" + login_username + "'";

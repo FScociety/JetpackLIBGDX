@@ -59,8 +59,6 @@ public class MovingElement {
     }
 
     private void moveToEnd() {
-        double time = System.nanoTime();
-
         if (this.follower != null) {
             this.parent.start = this.follower;
         }

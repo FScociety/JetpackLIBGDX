@@ -6,30 +6,39 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Logger;
+import de.soerensc.jetpackgame.tools.engine.ecs.GameBehaviour;
 
-public class SpriteAnimation {
+import java.awt.*;
+import java.util.concurrent.Callable;
+import java.util.function.Consumer;
 
+public class SpriteAnimation extends GameBehaviour {
+
+    private SpriteAnimation followingAnimation = null;
+    private AnimationController animationController;
+    public Consumer<SpriteAnimation> listenerMethod;
     private final TextureRegion[] animationPart;
 
+    private String name;
     private int index;
     private float time;
     private float frameTime = 0.1f;
-    private boolean running = false;
+    public boolean running = false;
     public boolean looping = true;
     private TextureRegion currentFrame;
 
-    private int animStart, animEnd;
-
-    private SpriteAnimation(TextureRegion[] animationPart, float frameTime, boolean looping) {
+    private SpriteAnimation(TextureRegion[] animationPart, float frameTime, boolean looping, String name){
         this.animationPart = animationPart;
         this.index = 0;
         this.frameTime = frameTime;
         this.running = false;
         this.looping = looping;
         this.currentFrame = animationPart[0];
+        this.name = name;
     }
 
     public SpriteAnimation(TextureAtlas textureAtlas, String name) {
+        this.name = name;
 
         Gdx.app.debug("SpriteAnimation", "Searching frames for " + name);
 
@@ -61,24 +70,51 @@ public class SpriteAnimation {
 
     public SpriteAnimation(TextureAtlas textureAtlas) {
         this.animationPart = textureAtlas.getRegions().toArray(TextureRegion.class);
-        //this.currentFrame = this.animationPart[0];
     }
 
+    @Override
     public void update(float delta) {
         if (this.running) {
             this.time += delta;
 
+            //END of frame
             if (this.time >= this.frameTime) {
+                //RESET time
                 this.time = 0;
 
-
+                //END of animation
                 if (this.index > this.animationPart.length-1) {
                     this.index = 0;
-                    if (!this.looping) {
+
+                    //TODO: Following Animation not working proeply
+
+                    if (this.looping == false) {
                         this.running = false;
+
+                        if (this.followingAnimation != null) {
+                            if (this.followingAnimation.animationController != null) {
+                                this.followingAnimation.animationController.play(this.followingAnimation.name);
+                            } else {
+                                this.followingAnimation.play();
+                            }
+                        }
                     }
+                    
+                    /*if (this.looping == false) {
+                        this.running = false;
+                    } else if (this.followingAnimation != null) {
+                        this.running = false;
+                        //TODO:
+                        if (this.listenerMethod != null) this.listenerMethod.accept(this);
+                        this.followingAnimation.play();
+
+                        if (this.followingAnimation.animationController != null) {
+                            this.followingAnimation.animationController.updateActiveAnimation(this.followingAnimation);
+                        }
+                    }*/
                 }
 
+                //Update 'currentFrame'
                 if (this.running) this.currentFrame = this.animationPart[index];
 
                 this.index++;
@@ -115,11 +151,27 @@ public class SpriteAnimation {
     }
 
     public SpriteAnimation getCopy() {
-        return new SpriteAnimation(this.animationPart, this.frameTime, this.looping);
+        return new SpriteAnimation(this.animationPart, this.frameTime, this.looping, this.name);
     }
 
     public void setOffset(int offset) {
         //TODO: IDK if working the hell shit
         this.time += offset * this.frameTime;
+    }
+
+    public void setFollowingAnimation(SpriteAnimation spriteAnimation) {
+        this.followingAnimation = spriteAnimation;
+    }
+
+    public void setParent(AnimationController animationController) {
+        this.animationController = animationController;
+    }
+
+    public AnimationController getParent() {
+          return this.animationController;
+    }
+
+    public String getName() {
+        return this.name;
     }
 }

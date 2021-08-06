@@ -10,7 +10,9 @@ public class ObstangleSpawner extends GameBehaviour {
     private float bruzelTime;
     private float coinTime;
 
-    private float bruzelTimeBounds = 3;
+    private float bruzelTimeBounds = 10;
+
+    private float randomTime = 0;
 
     private float coinTimeBounds;
 
@@ -31,6 +33,7 @@ public class ObstangleSpawner extends GameBehaviour {
             bruzelTime = 0;
 
             if (bruzelTimeBounds >= 1) {
+                //TODO
                 bruzelTimeBounds -= 0.1f;
             }
 

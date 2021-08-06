@@ -26,6 +26,11 @@ public class Assets {
     public static final AssetManager manager = new AssetManager();
 
     //In-Game Textures
+    public static final String wallAtlas = "world/wall/wallAtlas.atlas";
+    public static final String playerAtlas = "world/textures/player/playerAnimAtlas.atlas";
+    public static final String obstangleAtlas = "world/textures/obstangles/saw/sawAtlas.atlas";
+    public static final String coinAtlas = "world/textures/coins/coinAtlas.atlas";
+    public static final String backgroundAtlas = "world/textures/backgrounds/backgrounds.atlas";
 
     //UI-Textures
     public static final String defaultFont = "ui/fonts/PIXEARG_.ttf";
@@ -66,6 +71,13 @@ public class Assets {
         //UI-Textures
         manager.load(uiElements, TextureAtlas.class);
 
+        //Textures
+        manager.load(wallAtlas, TextureAtlas.class);
+        manager.load(playerAtlas, TextureAtlas.class);
+        manager.load(obstangleAtlas, TextureAtlas.class);
+        manager.load(coinAtlas, TextureAtlas.class);
+        manager.load(backgroundAtlas, TextureAtlas.class);
+
         //SOUND
         manager.load(coinSound, Sound.class);
         manager.load(runningSound, Sound.class);
@@ -73,6 +85,7 @@ public class Assets {
         //FINISH
         manager.finishLoading();
 
+        //Create UI-Templates
         Assets.loadPanelTexture();
         Assets.loadButtonStyle();
         Assets.loadLabelStyle();
